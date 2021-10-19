@@ -1,0 +1,70 @@
+<script>
+const labels = new Array(1000);
+
+for(var i = 1;i < 1000-1;i++){
+	labels[i] = String(i);
+}
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'test0',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: dataRedUL,
+  },
+  {
+	label: 'test1',
+	backgroundColor: 'rgb(99,255,132)',
+	borderColor: 'rgb(99,255,132)',
+	data: dataRedEU,
+  },
+  {
+	label: 'test2',
+	backgroundColor: 'rgb(132,99,255)',
+	borderColor: 'rgb(132,99,255)',
+	data: dataRedRE,
+  }]
+};
+
+const config = {
+  type: 'bubble',
+  data: data,
+  options: {
+	responsive: true,
+	plugins: {
+		legend: {
+		        position: 'top',
+			onHover: function(e) {
+				e.target.style.cursor = 'pointer';
+      			},
+		},
+            	title: {
+                	display: true,
+                	text: 'Custom Chart Title'
+            	},
+		hover: {
+		      	onHover: function(e) {
+			      var point = this.getElementAtEvent(e);
+			      if (point.length) e.target.style.cursor = 'pointer';
+			      else e.target.style.cursor = 'default';
+			}
+		}
+	},
+	scaleLabel: {
+              display: true,
+              padding: 5,
+              fontColor: '#555759',
+              fontSize: 10,
+              fontStyle: 700,
+              labelString: 'Genres'
+            }
+  }
+};
+
+
+var myChart = new Chart(
+    document.getElementById('upChart'),
+    config
+  );
+</script>

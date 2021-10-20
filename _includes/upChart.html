@@ -31,25 +31,28 @@ const config = {
   type: 'bubble',
   data: data,
   options: {
+	interaction: { mode: 'index' },
+	onHover: function (e) {
+	     const points = this.getElementsAtEventForMode(
+	       e,
+	       'index', { axis: 'x', intersect: true },
+	       false
+	     );
+
+	     if (points.length) e.native.target.style.cursor = 'pointer';
+	     else e.native.target.style.cursor = 'default';
+   	},	//chart values in the one tooltip on hover
+	
+	  
 	responsive: true,
 	plugins: {
 		legend: {
 		        position: 'top',
-			onHover: function(e) {
-				e.target.style.cursor = 'pointer';
-      			},
 		},
             	title: {
                 	display: true,
                 	text: 'Custom Chart Title'
-            	},
-		hover: {
-		      	onHover: function(e) {
-			      var point = this.getElementAtEvent(e);
-			      if (point.length) e.target.style.cursor = 'pointer';
-			      else e.target.style.cursor = 'default';
-			}
-		}
+            	}
 	},
 	scaleLabel: {
               display: true,
@@ -58,7 +61,7 @@ const config = {
               fontSize: 10,
               fontStyle: 700,
               labelString: 'Genres'
-            }
+	}
   }
 };
 

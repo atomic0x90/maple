@@ -1,0 +1,133 @@
+<script>
+const redUL = d3.randomGeometric(0.003)
+const redEU = d3.randomGeometric(0.018)
+const redRE = d3.randomGeometric(0.060)
+
+const redULM = d3.randomGeometric(0.006)
+const redEUM = d3.randomGeometric(0.036)
+const redREM = d3.randomGeometric(0.120)
+
+//15,3.5,1 black
+//4.7619,1.9608,0.4975 additional
+//0.9901 questionable
+//4.7619,1.1858 expert
+//7.9994,1.6959,0.1996 master
+
+var dataRedUL = new Array(1000)
+var dataRedEU = new Array(1000)
+var dataRedRE = new Array(1000)
+
+var dataRedULM = new Array(1000)
+var dataRedEUM = new Array(1000)
+var dataRedREM = new Array(1000)
+
+var maxRedUL = 0
+var maxRedEU = 0
+var maxRedRE = 0
+
+var maxRedULM = 0
+var maxRedEUM = 0
+var maxRedREM = 0
+
+dataRedUL.fill(0)
+dataRedEU.fill(0)
+dataRedRE.fill(0)
+
+dataRedULM.fill(0)
+dataRedEUM.fill(0)
+dataRedREM.fill(0)
+
+var redULPreValue = dataRedUL[0]
+var redEUPreValue = dataRedEU[0]
+var redREPreValue = dataRedRE[0]
+
+var redULMPreValue = dataRedULM[0]
+var redEUMPreValue = dataRedEUM[0]
+var redREMPreValue = dataRedREM[0]
+
+for(var i = 0;i < 1000;i++){
+	//red	
+	var tmp = redUL();
+	if(tmp < maxRedUL) maxRedUL = tmp;
+	if(tmp > dataRedUL.length) dataRedUL[dataRedUL.length-1]++;
+	else dataRedUL[tmp]++;
+
+	tmp = redEU();
+	if(tmp < maxRedEU) maxRedEU = tmp;
+	if(tmp > dataRedEU.length) dataRedEU[dataRedEU.length-1]++;
+	else dataRedEU[tmp]++;
+	
+	tmp = redRE();
+	if(tmp < maxRedRE) maxRedRE = tmp;
+	if(tmp > dataRedRE.length) dataRedRE[dataRedRE.length-1]++;
+	else dataRedRE[tmp]++;
+
+	//red miracle
+	tmp = redULM();
+	if(tmp < maxRedULM) maxRedULM = tmp;
+	if(tmp > dataRedULM.length) dataRedULM[dataRedULM.length-1]++;
+	else dataRedULM[tmp]++;
+
+	tmp = redEUM();
+	if(tmp < maxRedEUM) maxRedEUM = tmp;
+	if(tmp > dataRedEUM.length) dataRedEUM[dataRedEUM.length-1]++;
+	else dataRedEUM[tmp]++;
+	
+	tmp = redREM();
+	if(tmp < maxRedREM) maxRedREM = tmp;
+	if(tmp > dataRedREM.length) dataRedREM[dataRedREM.length-1]++;
+	else dataRedREM[tmp]++;
+}
+
+for(var i = 0;i < 1000;i++){
+	//red
+	if(dataRedUL[i+1] != 0){
+		dataRedUL[i+1] = redULPreValue + dataRedUL[i+1];
+		redULPreValue = dataRedUL[i+1];
+	}
+	else dataRedUL[i+1] = NaN;
+
+	if(dataRedEU[i+1] != 0){
+		dataRedEU[i+1] = redEUPreValue + dataRedEU[i+1];
+		redEUPreValue = dataRedEU[i+1];
+	}
+	else dataRedEU[i+1] = NaN;
+
+	if(dataRedRE[i+1] != 0){
+		dataRedRE[i+1] = redREPreValue + dataRedRE[i+1];
+		redREPreValue = dataRedRE[i+1];
+	}
+	else dataRedRE[i+1] = NaN;
+
+	//red miracle
+	if(dataRedULM[i+1] != 0){
+		dataRedULM[i+1] = redULMPreValue + dataRedULM[i+1];
+		redULMPreValue = dataRedULM[i+1];
+	}
+	else dataRedULM[i+1] = NaN;
+
+	if(dataRedEUM[i+1] != 0){
+		dataRedEUM[i+1] = redEUMPreValue + dataRedEUM[i+1];
+		redEUMPreValue = dataRedEUM[i+1];
+	}
+	else dataRedEUM[i+1] = NaN;
+
+	if(dataRedREM[i+1] != 0){
+		dataRedREM[i+1] = redREMPreValue + dataRedREM[i+1];
+		redREMPreValue = dataRedREM[i+1];
+	}
+	else dataRedREM[i+1] = NaN;
+}
+
+//red
+while(isNaN(dataRedUL[dataRedUL.length-1])) dataRedUL.pop();
+while(isNaN(dataRedEU[dataRedEU.length-1])) dataRedEU.pop();
+while(isNaN(dataRedRE[dataRedRE.length-1])) dataRedRE.pop();
+
+//red miracle
+while(isNaN(dataRedULM[dataRedULM.length-1])) dataRedULM.pop();
+while(isNaN(dataRedEUM[dataRedEUM.length-1])) dataRedEUM.pop();
+while(isNaN(dataRedREM[dataRedREM.length-1])) dataRedREM.pop();
+
+
+</script>

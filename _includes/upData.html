@@ -1,4 +1,5 @@
 <script>
+//red
 const redUL = d3.randomGeometric(0.003)
 const redEU = d3.randomGeometric(0.018)
 const redRE = d3.randomGeometric(0.060)
@@ -7,12 +8,19 @@ const redULM = d3.randomGeometric(0.006)
 const redEUM = d3.randomGeometric(0.036)
 const redREM = d3.randomGeometric(0.120)
 
+//black
+const blackUL = d3.randomGeometric(0.010)
+const blackEU = d3.randomGeometric(0.035)
+const blackRE = d3.randomGeometric(0.150)
+
+//6,1.8,0.3 red
 //15,3.5,1 black
 //4.7619,1.9608,0.4975 additional
 //0.9901 questionable
 //4.7619,1.1858 expert
 //7.9994,1.6959,0.1996 master
 
+//red
 var dataRedUL = new Array(1000)
 var dataRedEU = new Array(1000)
 var dataRedRE = new Array(1000)
@@ -21,6 +29,12 @@ var dataRedULM = new Array(1000)
 var dataRedEUM = new Array(1000)
 var dataRedREM = new Array(1000)
 
+//black
+var dataBlackUL = new Array(1000)
+var dataBlackEU = new Array(1000)
+var dataBlackRE = new Array(1000)
+
+//red
 var maxRedUL = 0
 var maxRedEU = 0
 var maxRedRE = 0
@@ -29,6 +43,12 @@ var maxRedULM = 0
 var maxRedEUM = 0
 var maxRedREM = 0
 
+//black
+var maxBlackUL = 0
+var maxBlackEU = 0
+var maxBlackRE = 0
+
+//red
 dataRedUL.fill(0)
 dataRedEU.fill(0)
 dataRedRE.fill(0)
@@ -37,6 +57,12 @@ dataRedULM.fill(0)
 dataRedEUM.fill(0)
 dataRedREM.fill(0)
 
+//black
+dataBlackUL.fill(0)
+dataBlackEU.fill(0)
+dataBlackRE.fill(0)
+
+//red
 var redULPreValue = dataRedUL[0]
 var redEUPreValue = dataRedEU[0]
 var redREPreValue = dataRedRE[0]
@@ -45,38 +71,50 @@ var redULMPreValue = dataRedULM[0]
 var redEUMPreValue = dataRedEUM[0]
 var redREMPreValue = dataRedREM[0]
 
+//black
+
+
+var AvRedUL=0,AvRedEU=0,AvRedRE=0
+var AvRedULM=0,AvRedEUM=0,AvRedREM=0
+
 for(var i = 0;i < 1000;i++){
 	//red	
 	var tmp = redUL();
 	if(tmp < maxRedUL) maxRedUL = tmp;
 	if(tmp > dataRedUL.length) dataRedUL[dataRedUL.length-1]++;
 	else dataRedUL[tmp]++;
+	AvRedUL += tmp;
 
 	tmp = redEU();
 	if(tmp < maxRedEU) maxRedEU = tmp;
 	if(tmp > dataRedEU.length) dataRedEU[dataRedEU.length-1]++;
 	else dataRedEU[tmp]++;
-	
+	AvRedEU += tmp;	
+
 	tmp = redRE();
 	if(tmp < maxRedRE) maxRedRE = tmp;
 	if(tmp > dataRedRE.length) dataRedRE[dataRedRE.length-1]++;
 	else dataRedRE[tmp]++;
+	AvRedRE += tmp;
 
 	//red miracle
 	tmp = redULM();
 	if(tmp < maxRedULM) maxRedULM = tmp;
 	if(tmp > dataRedULM.length) dataRedULM[dataRedULM.length-1]++;
 	else dataRedULM[tmp]++;
+	AvRedULM += tmp;
 
 	tmp = redEUM();
 	if(tmp < maxRedEUM) maxRedEUM = tmp;
 	if(tmp > dataRedEUM.length) dataRedEUM[dataRedEUM.length-1]++;
 	else dataRedEUM[tmp]++;
-	
+	AvRedEUM += tmp;	
+
 	tmp = redREM();
 	if(tmp < maxRedREM) maxRedREM = tmp;
 	if(tmp > dataRedREM.length) dataRedREM[dataRedREM.length-1]++;
 	else dataRedREM[tmp]++;
+	AvRedREM += tmp;
 }
 
 for(var i = 0;i < 1000;i++){
@@ -129,5 +167,12 @@ while(isNaN(dataRedULM[dataRedULM.length-1])) dataRedULM.pop();
 while(isNaN(dataRedEUM[dataRedEUM.length-1])) dataRedEUM.pop();
 while(isNaN(dataRedREM[dataRedREM.length-1])) dataRedREM.pop();
 
+
+console.log(AvRedRE/1000);
+console.log(AvRedEU/1000);
+console.log(AvRedUL/1000);
+console.log(AvRedREM/1000);
+console.log(AvRedEUM/1000);
+console.log(AvRedULM/1000);
 
 </script>

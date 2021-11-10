@@ -5,13 +5,14 @@ for(var i = 1;i < 1000-1;i++){
 	labels[i] = String(i);
 }
 
-const data = {
+var data = {
   labels: labels,
   datasets: [{
     label: 'test0',
     backgroundColor: 'rgb(255, 99, 132)',
     borderColor: 'rgb(255, 99, 132)',
     data: dataRedUL,
+	  hidden:true,
   },
   {
 	label: 'test1',

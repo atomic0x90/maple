@@ -210,9 +210,45 @@ var ULMasterMDataset = {
         borderColor: 'rgb(17,17,255)',
 };
 
+const cubeUpConfig = {
+	type: 'bubble',
+	data: cubeUpData,
+	options: {
+		interaction: { mode: 'index' },
+		onHover: function (e) {
+			const points = this.getElementsAtEventForMode(
+				e,
+				'index', { axis: 'x', intersect: true },
+				false
+			);
+
+			if(points.length) e.native.target.style.cursor = 'pointer';
+			else e.native.target.style.cursor = 'defalut';
+		},	//chart value in the one tooltip on hover
+		responsive: true,
+		plugins: {
+			legend: {
+				position: 'top',
+			},
+			title: {
+				display: true,
+				text: 'Custom Chart Title'
+			}
+		},
+		scaleLabel: {
+			display: true,
+			padding: 5,
+			fontColor: '#555759',
+			fontSize: 10,
+			fontStyle: 700,
+			labelString: 'Genres'
+		}
+	}
+};
+
 var myChart2 = new Chart(
 	document.getElementById('cubeUpChart'),
-	config
+	cubeUpConfig
 );
 
 </script>

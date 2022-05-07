@@ -1,0 +1,151 @@
+var dataMasterUL = [];
+var dataMasterEU = [];
+var dataMasterRE = [];
+var dataMasterREreal = [];
+var dataMasterEUreal = [];
+var dataMasterULreal = [];
+
+var masterREAV = 0;
+var masterEUAV = 0;
+var masterULAV = 0;
+
+var masterRErealAV = 0;
+var masterEUrealAV = 0;
+var masterULrealAV = 0;
+
+var masterPercentage = document.querySelectorAll('#mastercube .details .data table tbody tr td');
+
+//percentage object->string->number
+var masterPercentage1 = masterPercentage[3].innerText;
+masterPercentage1 = (Number(masterPercentage1.slice(0,-1))/100).toFixed(7);
+var masterPercentage2 = masterPercentage[4].innerText;
+masterPercentage2 = (Number(masterPercentage2.slice(0,-1))/100).toFixed(7);
+
+var masterPercentage3 = masterPercentage[8].innerText;
+masterPercentage3 = (Number(masterPercentage3.slice(0,-1))/100).toFixed(7);
+var masterPercentage4 = masterPercentage[9].innerText;
+masterPercentage4 = (Number(masterPercentage4.slice(0,-1))/100).toFixed(7);
+
+var masterPercentage5 = masterPercentage[13].innerText;
+masterPercentage5 = (Number(masterPercentage5.slice(0,-1))/100).toFixed(7);
+var masterPercentage6 = masterPercentage[14].innerText;
+masterPercentage6 = (Number(masterPercentage6.slice(0,-1))/100).toFixed(7);
+
+
+
+//mastercube chart function
+function mastercubeChartFunction(){
+
+	
+	//data setting
+	const master1 = d3.randomGeometric(masterPercentage1);
+	const master2 = d3.randomGeometric(masterPercentage2);
+	const master3 = d3.randomGeometric(masterPercentage3);
+	const master4 = d3.randomGeometric(masterPercentage4);
+	const master5 = d3.randomGeometric(masterPercentage5);
+	const master6 = d3.randomGeometric(masterPercentage6);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = master1();
+		dataMasterRE[i] = tmp1;
+		
+		var tmp2 = master2();
+		dataMasterREreal[i] = tmp2;
+
+		var tmp3 = master3();
+		dataMasterEU[i] = tmp3;
+	
+		var tmp4 = master4();
+		dataMasterEUreal[i] = tmp4;
+
+		var tmp5 = master5();
+		dataMasterUL[i] = tmp5;
+	
+		var tmp6 = master6();
+		dataMasterULreal[i] = tmp6;
+
+		masterREAV += tmp1;
+		masterEUAV += tmp3;
+		masterULAV += tmp5;
+		masterRErealAV += tmp2;
+		masterEUrealAV += tmp4;
+		masterULrealAV += tmp6;
+	}
+
+	dataMasterRE.sort(function(a, b){return a - b;});
+	dataMasterREreal.sort(function(a, b){return a - b;});
+	dataMasterEU.sort(function(a, b){return a - b;});
+	dataMasterEUreal.sort(function(a, b){return a - b;});
+	dataMasterUL.sort(function(a, b){return a - b;});
+	dataMasterULreal.sort(function(a, b){return a - b;});
+
+	masterREAV /= arrayLength;
+	masterEUAV /= arrayLength;
+	masterULAV /= arrayLength;
+	masterRErealAV /= arrayLength;
+	masterEUrealAV /= arrayLength;
+	masterULrealAV /= arrayLength;
+
+	//chart
+	var masterCubeChart = document.querySelectorAll('.masterCubeChart');
+	new Chart(masterCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataMasterRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataMasterREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+	new Chart(masterCubeChart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataMasterEU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataMasterEUreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+	
+	new Chart(masterCubeChart[2], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataMasterUL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataMasterULreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//mastercubeChartFunction
+

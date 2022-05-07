@@ -1,1 +1,1 @@
-# maple-cube
+# maple

@@ -1,0 +1,19 @@
+var masterTitle1 = document.querySelectorAll('#mastercube .details .data .header h2');
+var masterTitleLength = masterTitle1.length;
+for(var i = 0;i < masterTitleLength;i++){
+	masterTitle1[i].innerText = subTitle1[0].textContent+'\n'+subTitle2[0].textContent;
+}
+
+var masterThead = document.querySelectorAll('#mastercube .details .data table thead');
+var masterThead1 = basic[5].querySelector('thead');
+var masterTheadLength = masterThead.length;
+for(var i = 0;i < masterTheadLength;i++){
+	masterThead[i].innerHTML = masterThead1.innerHTML;
+}
+
+var masterTbody = document.querySelectorAll('#mastercube .details .data table tbody');
+var masterTbody1 = basic[5].querySelectorAll('tbody tr');
+var masterTbodyLength = masterTbody.length;
+for(var i = 0;i < masterTbodyLength;i++){
+	masterTbody[i].innerHTML = masterTbody1[i].innerHTML;
+}

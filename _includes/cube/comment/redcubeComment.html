@@ -1,0 +1,92 @@
+function redcubeCommentFunction(){
+	var redComment = document.querySelectorAll('#redcube .details .comment');
+	var redcubeName = redThead[0].querySelectorAll('tr th')[0].innerText;
+	var redcubeCost = 1200;
+
+	redComment[0].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+redcubeName+' 비용은 '+redcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 값 : '+redREAV+'개'+'\n'+
+	redcubeName+' 실제 확률 평균 값 : '+redRErealAV+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 중간 값 : '+dataRedRE[(arrayLength/2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 중간 값 : '+dataRedREreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 값 : '+dataRedRE[((arrayLength/10)*2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 값 : '+dataRedREreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 값 : '+dataRedRE[((arrayLength/10)*8)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 값 : '+dataRedREreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 비용 : '+(redREAV*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 평균 비용 : '+(redRErealAV*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 비용 : '+(dataRedRE[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 비용 : '+(dataRedREreal[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 비용 : '+(dataRedRE[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 비용 : '+(dataRedREreal[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'
+	;
+
+
+	redComment[1].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+redcubeName+' 비용은 '+redcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 값 : '+redEUAV+'개'+'\n'+
+	redcubeName+' 실제 확률 평균 값 : '+redEUrealAV+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 중간 값 : '+dataRedEU[(arrayLength/2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 중간 값 : '+dataRedEUreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 값 : '+dataRedEU[((arrayLength/10)*2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 값 : '+dataRedEUreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 값 : '+dataRedEU[((arrayLength/10)*8)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 값 : '+dataRedEUreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 비용 : '+(redEUAV*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 평균 비용 : '+(redEUrealAV*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 비용 : '+(dataRedEU[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 비용 : '+(dataRedEUreal[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 비용 : '+(dataRedEU[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 비용 : '+(dataRedEUreal[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'
+	;
+
+	redComment[2].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+redcubeName+' 비용은 '+redcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 값 : '+redULAV+'개'+'\n'+
+	redcubeName+' 실제 확률 평균 값 : '+redULrealAV+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 중간 값 : '+dataRedUL[(arrayLength/2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 중간 값 : '+dataRedULreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 값 : '+dataRedUL[((arrayLength/10)*2)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 값 : '+dataRedULreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 값 : '+dataRedUL[((arrayLength/10)*8)-1]+'개'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 값 : '+dataRedULreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 평균 비용 : '+(redULAV*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 평균 비용 : '+(redULrealAV*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 20% 비용 : '+(dataRedUL[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 20% 비용 : '+(dataRedULreal[((arrayLength/10)*2)-1]*redcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	redcubeName+' 설정 확률 상위 80% 비용 : '+(dataRedUL[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'+'\n'+
+	redcubeName+' 실제 확률 상위 80% 비용 : '+(dataRedULreal[((arrayLength/10)*8)-1]*redcubeCost).toLocaleString()+'원'
+	;
+
+
+}

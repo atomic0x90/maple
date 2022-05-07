@@ -1,0 +1,21 @@
+var masterpieceBlackWeaponTitle = document.querySelectorAll('#masterpieceBlackWeapon .details .data .header h2');
+var masterpieceBlackWeaponTitleLength = masterpieceBlackWeaponTitle.length;
+for(var i = 0;i < masterpieceBlackWeaponTitleLength;i++){
+	masterpieceBlackWeaponTitle[i].innerText = sq_bul[6].textContent.substring(1,sq_bul[6].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var masterpieceBlackWeaponThead1 = document.querySelectorAll('#masterpieceBlackWeapon .details .data table thead');
+var masterpieceBlackWeaponThead2 = type2[10].querySelector('thead');
+var masterpieceBlackWeaponTheadLength = masterpieceBlackWeaponThead1.length;
+for(var i = 0;i < masterpieceBlackWeaponTheadLength;i++){
+	masterpieceBlackWeaponThead1[i].innerHTML = masterpieceBlackWeaponThead2.innerHTML;
+}
+
+var masterpieceBlackWeaponTbody1 = document.querySelectorAll('#masterpieceBlackWeapon .details .data table tbody tr');
+var masterpieceBlackWeaponTbody2 = type2[10].querySelectorAll('tbody tr');
+var masterpieceBlackWeaponTbodyLength = masterpieceBlackWeaponTbody1.length;
+for(var i = 0;i < masterpieceBlackWeaponTbodyLength;i++){
+	masterpieceBlackWeaponTbody1[i].innerHTML = masterpieceBlackWeaponTbody2[i].innerHTML;
+}

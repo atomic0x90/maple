@@ -1,0 +1,29 @@
+var spell1Title = document.querySelectorAll('#spell1 .details .data .header h2');
+var spell1TitleLength = spell1Title.length;
+for(var i = 0;i < spell1TitleLength;i++){
+	spell1Title[i].innerText = sq_bul[9].textContent.substring(1,sq_bul[9].textContent.length-1)+'\n'+
+					subTitle1[4].textContent+'\n'+
+					subTitle2[4].textContent;
+}
+
+var spell1Thead1 = document.querySelectorAll('#spell1 .details .data table thead');
+var spell1Thead2 = type3[0].querySelectorAll('thead tr');
+var spell1Thead3 = type3[1].querySelectorAll('thead tr');
+
+var date = '<th>요일</th>';
+var spell1TheadLength = spell1Thead1.length;
+
+for(var i = 0;i < spell1TheadLength;i++){
+	spell1Thead1[i].innerHTML = date + spell1Thead2[1].innerHTML;
+}
+
+var spell1Tbody1 = document.querySelectorAll('#spell1 .details .data table tbody tr');
+var spell1Tbody2 = type3[0].querySelectorAll('tbody tr');
+var spell1Tbody3 = type3[1].querySelectorAll('tbody tr');
+
+var spell1TbodyLength = spell1Tbody2.length;
+
+for(var i = 0;i < spell1TbodyLength;i++){
+	spell1Tbody1[i*2].innerHTML = spell1Thead2[0].textContent + spell1Tbody2[i].innerHTML;
+	spell1Tbody1[(i*2)+1].innerHTML = spell1Thead3[0].textContent + spell1Tbody3[i].innerHTML;
+}

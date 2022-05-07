@@ -1,0 +1,76 @@
+var spell3Percentage = document.querySelectorAll('#spell3 .details .data table tbody tr td');
+
+var spell3Chart = document.querySelectorAll('.spell3Chart');
+
+var spell3AV = new Array(spell3Chart.length).fill(0);
+var spell3realAV = new Array(spell3Chart.length).fill(0);
+
+var spell3ChartLength = spell3Chart.length;
+
+var dataspell3 = new Array(spell3ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell3real = new Array(spell3ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+
+
+
+//spell3 chart function
+function spell3ChartFunction(){
+	for(var l = 0;l < spell3ChartLength;l++){
+		//percentage object->string->number
+		var spell3Percentage1 = spell3Percentage[(l*6)+4].innerText;
+		spell3Percentage1 = (Number(spell3Percentage1.slice(0,-1))/100).toFixed(5);
+		var spell3Percentage2 = spell3Percentage[(l*6)+5].innerText;
+		spell3Percentage2 = (Number(spell3Percentage2.slice(0,-1))/100).toFixed(5);
+
+		//data setting
+		const spell1 = d3.randomGeometric(spell3Percentage1);
+		const spell2 = d3.randomGeometric(spell3Percentage2);
+
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = spell1();
+			dataspell3[l][i] = tmp1;
+			
+			var tmp2 = spell2();
+			dataspell3real[l][i] = tmp2;
+
+			spell3AV[l] += tmp1;
+			spell3realAV[l] += tmp2;
+		}
+
+		dataspell3[l].sort(function(a, b){return a - b;});
+		dataspell3real[l].sort(function(a, b){return a - b;});
+
+		spell3AV[l] /= arrayLength;
+		spell3realAV[l] /= arrayLength;
+
+
+		//chart
+		
+		new Chart(spell3Chart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: dataspell3[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: dataspell3real[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//spell3ChartFunction
+

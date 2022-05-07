@@ -1,0 +1,106 @@
+var dataAbility2UL = [];
+var dataAbility2EU = [];
+var dataAbility2EUreal = [];
+var dataAbility2ULreal = [];
+
+var ability2EUAV = 0;
+var ability2ULAV = 0;
+
+var ability2EUrealAV = 0;
+var ability2ULrealAV = 0;
+
+var ability2Percentage = document.querySelectorAll('#ability2 .details .data table tbody tr td');
+
+//percentage object->string->number
+var ability2Percentage1 = ability2Percentage[1].innerText;
+ability2Percentage1 = (Number(ability2Percentage1.slice(0,-1))/100).toFixed(5);
+var ability2Percentage2 = ability2Percentage[2].innerText;
+ability2Percentage2 = (Number(ability2Percentage2.slice(0,-1))/100).toFixed(5);
+
+var ability2Percentage3 = ability2Percentage[6].innerText;
+ability2Percentage3 = (Number(ability2Percentage3.slice(0,-1))/100).toFixed(5);
+var ability2Percentage4 = ability2Percentage[7].innerText;
+ability2Percentage4 = (Number(ability2Percentage4.slice(0,-1))/100).toFixed(5);
+
+
+//ability2 chart function
+function ability2ChartFunction(){
+
+	
+	//data setting
+	const ability1 = d3.randomGeometric(ability2Percentage1);
+	const ability2 = d3.randomGeometric(ability2Percentage2);
+	const ability3 = d3.randomGeometric(ability2Percentage3);
+	const ability4 = d3.randomGeometric(ability2Percentage4);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = ability1();
+		dataAbility2EU[i] = tmp1;
+	
+		var tmp2 = ability2();
+		dataAbility2EUreal[i] = tmp2;
+
+		var tmp3 = ability3();
+		dataAbility2UL[i] = tmp3;
+	
+		var tmp4 = ability4();
+		dataAbility2ULreal[i] = tmp4;
+
+		ability2EUAV += tmp1;
+		ability2ULAV += tmp2;
+		ability2EUrealAV += tmp3;
+		ability2ULrealAV += tmp4;
+	}
+
+	dataAbility2EU.sort(function(a, b){return a - b;});
+	dataAbility2EUreal.sort(function(a, b){return a - b;});
+	dataAbility2UL.sort(function(a, b){return a - b;});
+	dataAbility2ULreal.sort(function(a, b){return a - b;});
+
+	ability2EUAV /= arrayLength;
+	ability2ULAV /= arrayLength;
+	ability2EUrealAV /= arrayLength;
+	ability2ULrealAV /= arrayLength;
+
+	//chart
+	var ability2Chart = document.querySelectorAll('.ability2Chart');
+	new Chart(ability2Chart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAbility2EU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAbility2EUreal
+		}
+	      ]
+	    },
+	    options: {% include ability/chart/chartOption.html %}
+	});
+
+	new Chart(ability2Chart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAbility2UL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAbility2ULreal
+		}
+	      ]
+	    },
+	    options: {% include ability/chart/chartOption.html %}
+	});
+}//ability2ChartFunction
+

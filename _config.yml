@@ -1,0 +1,38 @@
+---
+
+port: 4000
+host: 0.0.0.0
+safe: false
+
+
+### site serving configuration ###
+exclude: [CNAME, README.md, .gitignore]
+permalink: /:title ## disables post output
+timezone: null
+lsi: false
+markdown: kramdown
+
+
+### content configuration ###
+title:       "메이플 확률 데이터 시각화"
+keywords:    "메이플스토리,메이플,메이플 큐브,메이플 큐브 등급업,메이플 확률,메이플 기댓값"
+description: "메이플스토리 공개된 아이템 확률을 통해 기댓값을 확인합니다."
+source_link: "https://atomic0x90.github.io/"
+favicon:     "img/analytics-outline.svg"
+touch_icon:  "img/analytics-outline.svg"
+google_analytics_key: 3548642745 ## put YOUR key here to enable tracking! (blank to disable)
+
+
+### template colors, used site-wide via css ###
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'
+
+kramdown:
+  auto_ids:  false
+

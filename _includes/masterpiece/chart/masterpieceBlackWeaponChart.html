@@ -1,0 +1,70 @@
+var masterpieceBlackWeaponPercentage = document.querySelectorAll('#masterpieceBlackWeapon .details .data table tbody tr td');
+
+var masterpieceBlackWeaponChart = document.querySelectorAll('.masterpieceBlackWeaponChart');
+
+var masterpieceBlackWeaponChartLength = masterpieceBlackWeaponChart.length;
+
+var masterpieceBlackWeaponAV = new Array(masterpieceBlackWeaponChartLength).fill(0);
+var masterpieceBlackWeaponrealAV = new Array(masterpieceBlackWeaponChartLength).fill(0);
+var datamasterpieceBlackWeapon = new Array(masterpieceBlackWeaponChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceBlackWeaponreal = new Array(masterpieceBlackWeaponChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceBlackWeapon chart function
+function masterpieceBlackWeaponChartFunction(){
+	for(var l = 0;l < masterpieceBlackWeaponChartLength;l++){
+		//percentage object->string->number
+		var masterpieceBlackWeaponPercentage1 = masterpieceBlackWeaponPercentage[(l*3)+1].innerText;
+		masterpieceBlackWeaponPercentage1 = (Number(masterpieceBlackWeaponPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceBlackWeaponPercentage2 = masterpieceBlackWeaponPercentage[(l*3)+2].innerText;
+		masterpieceBlackWeaponPercentage2 = (Number(masterpieceBlackWeaponPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceBlackWeapon1 = d3.randomGeometric(masterpieceBlackWeaponPercentage1);
+		const masterpieceBlackWeapon2 = d3.randomGeometric(masterpieceBlackWeaponPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceBlackWeapon1();
+			datamasterpieceBlackWeapon[l][i] = tmp1;
+			
+			var tmp2 = masterpieceBlackWeapon2();
+			datamasterpieceBlackWeaponreal[l][i] = tmp2;
+
+			masterpieceBlackWeaponAV[l] += tmp1;
+			masterpieceBlackWeaponrealAV[l] += tmp2;
+		}
+
+		datamasterpieceBlackWeapon[l].sort(function(a, b){return a - b;});
+		datamasterpieceBlackWeaponreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceBlackWeaponAV[l] /= arrayLength;
+		masterpieceBlackWeaponrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceBlackWeaponChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceBlackWeapon[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceBlackWeaponreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceBlackWeaponChartFunction
+

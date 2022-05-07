@@ -1,0 +1,70 @@
+var masterpieceRedWeaponPercentage = document.querySelectorAll('#masterpieceRedWeapon .details .data table tbody tr td');
+
+var masterpieceRedWeaponChart = document.querySelectorAll('.masterpieceRedWeaponChart');
+
+var masterpieceRedWeaponChartLength = masterpieceRedWeaponChart.length;
+
+var masterpieceRedWeaponAV = new Array(masterpieceRedWeaponChartLength).fill(0);
+var masterpieceRedWeaponrealAV = new Array(masterpieceRedWeaponChartLength).fill(0);
+var datamasterpieceRedWeapon = new Array(masterpieceRedWeaponChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceRedWeaponreal = new Array(masterpieceRedWeaponChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceRedWeapon chart function
+function masterpieceRedWeaponChartFunction(){
+	for(var l = 0;l < masterpieceRedWeaponChartLength;l++){
+		//percentage object->string->number
+		var masterpieceRedWeaponPercentage1 = masterpieceRedWeaponPercentage[(l*3)+1].innerText;
+		masterpieceRedWeaponPercentage1 = (Number(masterpieceRedWeaponPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceRedWeaponPercentage2 = masterpieceRedWeaponPercentage[(l*3)+2].innerText;
+		masterpieceRedWeaponPercentage2 = (Number(masterpieceRedWeaponPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceRedWeapon1 = d3.randomGeometric(masterpieceRedWeaponPercentage1);
+		const masterpieceRedWeapon2 = d3.randomGeometric(masterpieceRedWeaponPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceRedWeapon1();
+			datamasterpieceRedWeapon[l][i] = tmp1;
+			
+			var tmp2 = masterpieceRedWeapon2();
+			datamasterpieceRedWeaponreal[l][i] = tmp2;
+	
+			masterpieceRedWeaponAV[l] += tmp1;
+			masterpieceRedWeaponrealAV[l] += tmp2;
+		}
+
+		datamasterpieceRedWeapon[l].sort(function(a, b){return a - b;});
+		datamasterpieceRedWeaponreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceRedWeaponAV[l] /= arrayLength;
+		masterpieceRedWeaponrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceRedWeaponChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceRedWeapon[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceRedWeaponreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceRedWeaponChartFunction
+

@@ -1,0 +1,33 @@
+function beautyWomanFaceCommentFunction(){
+	var beautyWomanFaceComment = document.querySelectorAll('#beautyWomanFace .details .data .comment');
+	var beautyWomanFaceCost = 3500;
+
+	var beautyWomanFaceCommentLength = beautyWomanFaceComment.length;
+	for(var i = 0;i < beautyWomanFaceCommentLength;i++){
+		var beautyWomanFaceName = beautyWomanFaceTbody1[i].querySelectorAll('tr td')[0].innerText;
+		beautyWomanFaceName = beautyWomanFaceName.replace(/(\r\n|\n|\r)/gm,'');
+
+		beautyWomanFaceComment[i].innerText =
+		'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+		'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+		'- 로얄 성형 비용은 '+beautyWomanFaceCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+		'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+		beautyWomanFaceName+' 설정 확률 평균 값 : '+beautyWomanFaceAV[i]+'개'+'\n'+
+		beautyWomanFaceName+' 실제 확률 평균 값 : '+beautyWomanFacerealAV[i]+'개'+'\n'+'\n'+
+
+		beautyWomanFaceName+' 설정 확률 중간 값 : '+databeautyWomanFace[i][(arrayLength/2)-1]+'개'+'\n'+
+		beautyWomanFaceName+' 실제 확률 중간 값 : '+databeautyWomanFacereal[i][(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+		beautyWomanFaceName+' 설정 확률 상위 20% 값 : '+databeautyWomanFace[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		beautyWomanFaceName+' 실제 확률 상위 20% 값 : '+databeautyWomanFacereal[i][((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+		beautyWomanFaceName+' 설정 확률 상위 80% 값 : '+databeautyWomanFace[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		beautyWomanFaceName+' 실제 확률 상위 80% 값 : '+databeautyWomanFacereal[i][((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+		beautyWomanFaceName+' 설정 확률 평균 비용 : '+(beautyWomanFaceAV[i]*beautyWomanFaceCost).toLocaleString()+'원'+'\n'+
+		beautyWomanFaceName+' 실제 확률 평균 비용 : '+(beautyWomanFacerealAV[i]*beautyWomanFaceCost).toLocaleString()+'원'+'\n'+'\n'
+		;
+
+	}
+}

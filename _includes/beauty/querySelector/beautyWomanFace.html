@@ -1,0 +1,21 @@
+var beautyWomanFaceTitle = document.querySelectorAll('#beautyWomanFace .details .data .header h2');
+var beautyWomanFaceTitleLength = beautyWomanFaceTitle.length;
+for(var i = 0;i < beautyWomanFaceTitleLength;i++){
+	beautyWomanFaceTitle[i].innerText = sq_bul[8].textContent.substring(1,sq_bul[8].textContent.length-1)+'\n'+
+					subTitle1[3].textContent+'\n'+
+					subTitle2[3].textContent;
+}
+
+var beautyWomanFaceThead1 = document.querySelectorAll('#beautyWomanFace .details .data table thead');
+var beautyWomanFaceThead2 = type2[14].querySelector('thead');
+var beautyWomanFaceTheadLength = beautyWomanFaceThead1.length;
+for(var i = 0;i < beautyWomanFaceTheadLength;i++){
+	beautyWomanFaceThead1[i].innerHTML = beautyWomanFaceThead2.innerHTML;
+}
+
+var beautyWomanFaceTbody1 = document.querySelectorAll('#beautyWomanFace .details .data table tbody tr');
+var beautyWomanFaceTbody2 = type2[14].querySelectorAll('tbody tr');
+var beautyWomanFaceTbodyLength = beautyWomanFaceTbody1.length;
+for(var i = 0;i < beautyWomanFaceTbodyLength;i++){
+	beautyWomanFaceTbody1[i].innerHTML = beautyWomanFaceTbody2[i].innerHTML;
+}

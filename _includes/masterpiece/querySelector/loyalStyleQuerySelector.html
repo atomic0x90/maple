@@ -1,0 +1,21 @@
+var loyalStyleTitle = document.querySelectorAll('#loyalStyle .details .data .header h2');
+var loyalStyleTitleLength = loyalStyleTitle.length;
+for(var i = 0;i < loyalStyleTitleLength;i++){
+	loyalStyleTitle[i].innerText = sq_bul[4].textContent.substring(1,sq_bul[4].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var loyalStyleThead1 = document.querySelectorAll('#loyalStyle .details .data table thead');
+var loyalStyleThead2 = type2[0].querySelector('thead');
+var loyalStyleTheadLength = loyalStyleThead1.length;
+for(var i = 0;i < loyalStyleTheadLength;i++){
+	loyalStyleThead1[i].innerHTML = loyalStyleThead2.innerHTML;
+}
+
+var loyalStyleTbody1 = document.querySelectorAll('#loyalStyle .details .data table tbody tr');
+var loyalStyleTbody2 = type2[0].querySelectorAll('tbody tr');
+var loyalStyleTbodyLength = loyalStyleTbody1.length;
+for(var i = 0;i < loyalStyleTbodyLength;i++){
+	loyalStyleTbody1[i].innerHTML = loyalStyleTbody2[i].innerHTML;
+}

@@ -1,0 +1,70 @@
+var loyalStylePercentage = document.querySelectorAll('#loyalStyle .details .data table tbody tr td');
+
+var loyalStyleChart = document.querySelectorAll('.loyalStyleChart');
+
+var loyalStyleChartLength = loyalStyleChart.length;
+
+var loyalStyleAV = new Array(loyalStyleChartLength).fill(0);
+var loyalStylerealAV = new Array(loyalStyleChartLength).fill(0);
+var dataloyalStyle = new Array(loyalStyleChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataloyalStylereal = new Array(loyalStyleChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//loyalStyle chart function
+function loyalStyleChartFunction(){
+	for(var l = 0;l < loyalStyleChartLength;l++){
+		//percentage object->string->number
+		var loyalStylePercentage1 = loyalStylePercentage[(l*3)+1].innerText;
+		loyalStylePercentage1 = (Number(loyalStylePercentage1.slice(0,-1))/100).toFixed(5);
+		var loyalStylePercentage2 = loyalStylePercentage[(l*3)+2].innerText;
+		loyalStylePercentage2 = (Number(loyalStylePercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const loyalStyle1 = d3.randomGeometric(loyalStylePercentage1);
+		const loyalStyle2 = d3.randomGeometric(loyalStylePercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = loyalStyle1();
+			dataloyalStyle[l][i] = tmp1;
+			
+			var tmp2 = loyalStyle2();
+			dataloyalStylereal[l][i] = tmp2;
+
+			loyalStyleAV[l] += tmp1;
+			loyalStylerealAV[l] += tmp2;
+		}
+
+		dataloyalStyle[l].sort(function(a, b){return a - b;});
+		dataloyalStylereal[l].sort(function(a, b){return a - b;});
+
+		loyalStyleAV[l] /= arrayLength;
+		loyalStylerealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(loyalStyleChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: dataloyalStyle[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: dataloyalStylereal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//loyalStyleChartFunction
+

@@ -1,0 +1,70 @@
+var masterpieceRedHatPercentage = document.querySelectorAll('#masterpieceRedHat .details .data table tbody tr td');
+
+var masterpieceRedHatChart = document.querySelectorAll('.masterpieceRedHatChart');
+
+var masterpieceRedHatChartLength = masterpieceRedHatChart.length;
+
+var masterpieceRedHatAV = new Array(masterpieceRedHatChartLength).fill(0);
+var masterpieceRedHatrealAV = new Array(masterpieceRedHatChartLength).fill(0);
+var datamasterpieceRedHat = new Array(masterpieceRedHatChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceRedHatreal = new Array(masterpieceRedHatChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceRedHat chart function
+function masterpieceRedHatChartFunction(){
+	for(var l = 0;l < masterpieceRedHatChartLength;l++){
+		//percentage object->string->number
+		var masterpieceRedHatPercentage1 = masterpieceRedHatPercentage[(l*3)+1].innerText;
+		masterpieceRedHatPercentage1 = (Number(masterpieceRedHatPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceRedHatPercentage2 = masterpieceRedHatPercentage[(l*3)+2].innerText;
+		masterpieceRedHatPercentage2 = (Number(masterpieceRedHatPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceRedHat1 = d3.randomGeometric(masterpieceRedHatPercentage1);
+		const masterpieceRedHat2 = d3.randomGeometric(masterpieceRedHatPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceRedHat1();
+			datamasterpieceRedHat[l][i] = tmp1;
+			
+			var tmp2 = masterpieceRedHat2();
+			datamasterpieceRedHatreal[l][i] = tmp2;
+
+			masterpieceRedHatAV[l] += tmp1;
+			masterpieceRedHatrealAV[l] += tmp2;
+		}
+
+		datamasterpieceRedHat[l].sort(function(a, b){return a - b;});
+		datamasterpieceRedHatreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceRedHatAV[l] /= arrayLength;
+		masterpieceRedHatrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceRedHatChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceRedHat[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceRedHatreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceRedHatChartFunction
+

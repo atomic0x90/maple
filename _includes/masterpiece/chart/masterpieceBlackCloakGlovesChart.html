@@ -1,0 +1,70 @@
+var masterpieceBlackCloakGlovesPercentage = document.querySelectorAll('#masterpieceBlackCloakGloves .details .data table tbody tr td');
+
+var masterpieceBlackCloakGlovesChart = document.querySelectorAll('.masterpieceBlackCloakGlovesChart');
+
+var masterpieceBlackCloakGlovesChartLength = masterpieceBlackCloakGlovesChart.length;
+
+var masterpieceBlackCloakGlovesAV = new Array(masterpieceBlackCloakGlovesChartLength).fill(0);
+var masterpieceBlackCloakGlovesrealAV = new Array(masterpieceBlackCloakGlovesChartLength).fill(0);
+var datamasterpieceBlackCloakGloves = new Array(masterpieceBlackCloakGlovesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceBlackCloakGlovesreal = new Array(masterpieceBlackCloakGlovesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceBlackCloakGloves chart function
+function masterpieceBlackCloakGlovesChartFunction(){
+	for(var l = 0;l < masterpieceBlackCloakGlovesChartLength;l++){
+		//percentage object->string->number
+		var masterpieceBlackCloakGlovesPercentage1 = masterpieceBlackCloakGlovesPercentage[(l*3)+1].innerText;
+		masterpieceBlackCloakGlovesPercentage1 = (Number(masterpieceBlackCloakGlovesPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceBlackCloakGlovesPercentage2 = masterpieceBlackCloakGlovesPercentage[(l*3)+2].innerText;
+		masterpieceBlackCloakGlovesPercentage2 = (Number(masterpieceBlackCloakGlovesPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceBlackCloakGloves1 = d3.randomGeometric(masterpieceBlackCloakGlovesPercentage1);
+		const masterpieceBlackCloakGloves2 = d3.randomGeometric(masterpieceBlackCloakGlovesPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceBlackCloakGloves1();
+			datamasterpieceBlackCloakGloves[l][i] = tmp1;
+			
+			var tmp2 = masterpieceBlackCloakGloves2();
+			datamasterpieceBlackCloakGlovesreal[l][i] = tmp2;
+
+			masterpieceBlackCloakGlovesAV[l] += tmp1;
+			masterpieceBlackCloakGlovesrealAV[l] += tmp2;
+		}
+
+		datamasterpieceBlackCloakGloves[l].sort(function(a, b){return a - b;});
+		datamasterpieceBlackCloakGlovesreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceBlackCloakGlovesAV[l] /= arrayLength;
+		masterpieceBlackCloakGlovesrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceBlackCloakGlovesChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceBlackCloakGloves[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceBlackCloakGlovesreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceBlackCloakGlovesChartFunction
+

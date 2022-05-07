@@ -1,0 +1,70 @@
+var beautyManHairPercentage = document.querySelectorAll('#beautyManHair .details .data table tbody tr td');
+
+var beautyManHairChart = document.querySelectorAll('.beautyManHairChart');
+	
+var beautyManHairChartLength = beautyManHairChart.length;
+
+var beautyManHairAV = new Array(beautyManHairChartLength).fill(0);
+var beautyManHairrealAV = new Array(beautyManHairChartLength).fill(0);
+var databeautyManHair = new Array(beautyManHairChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var databeautyManHairreal = new Array(beautyManHairChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//beautyManHair chart function
+function beautyManHairChartFunction(){
+	for(var l = 0;l < beautyManHairChartLength;l++){
+		//percentage object->string->number
+		var beautyManHairPercentage1 = beautyManHairPercentage[(l*3)+1].innerText;
+		beautyManHairPercentage1 = (Number(beautyManHairPercentage1.slice(0,-1))/100).toFixed(5);
+		var beautyManHairPercentage2 = beautyManHairPercentage[(l*3)+2].innerText;
+		beautyManHairPercentage2 = (Number(beautyManHairPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const beautyManHair1 = d3.randomGeometric(beautyManHairPercentage1);
+		const beautyManHair2 = d3.randomGeometric(beautyManHairPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = beautyManHair1();
+			databeautyManHair[l][i] = tmp1;
+			
+			var tmp2 = beautyManHair2();
+			databeautyManHairreal[l][i] = tmp2;
+
+			beautyManHairAV[l] += tmp1;
+			beautyManHairrealAV[l] += tmp2;
+		}
+
+		databeautyManHair[l].sort(function(a, b){return a - b;});
+		databeautyManHairreal[l].sort(function(a, b){return a - b;});
+
+		beautyManHairAV[l] /= arrayLength;
+		beautyManHairrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(beautyManHairChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: databeautyManHair[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: databeautyManHairreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//beautyManHairChartFunction
+

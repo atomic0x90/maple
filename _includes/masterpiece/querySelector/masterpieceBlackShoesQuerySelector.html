@@ -1,0 +1,21 @@
+var masterpieceBlackShoesTitle = document.querySelectorAll('#masterpieceBlackShoes .details .data .header h2');
+var masterpieceBlackShoesTitleLength = masterpieceBlackShoesTitle.length;
+for(var i = 0;i < masterpieceBlackShoesTitleLength;i++){
+	masterpieceBlackShoesTitle[i].innerText = sq_bul[6].textContent.substring(1,sq_bul[6].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var masterpieceBlackShoesThead1 = document.querySelectorAll('#masterpieceBlackShoes .details .data table thead');
+var masterpieceBlackShoesThead2 = type2[9].querySelector('thead');
+var masterpieceBlackShoesTheadLength = masterpieceBlackShoesThead1.length;
+for(var i = 0;i < masterpieceBlackShoesTheadLength;i++){
+	masterpieceBlackShoesThead1[i].innerHTML = masterpieceBlackShoesThead2.innerHTML;
+}
+
+var masterpieceBlackShoesTbody1 = document.querySelectorAll('#masterpieceBlackShoes .details .data table tbody tr');
+var masterpieceBlackShoesTbody2 = type2[9].querySelectorAll('tbody tr');
+var masterpieceBlackShoesTbodyLength = masterpieceBlackShoesTbody1.length;
+for(var i = 0;i < masterpieceBlackShoesTbodyLength;i++){
+	masterpieceBlackShoesTbody1[i].innerHTML = masterpieceBlackShoesTbody2[i].innerHTML;
+}

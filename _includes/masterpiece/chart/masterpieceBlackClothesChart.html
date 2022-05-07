@@ -1,0 +1,70 @@
+var masterpieceBlackClothesPercentage = document.querySelectorAll('#masterpieceBlackClothes .details .data table tbody tr td');
+
+var masterpieceBlackClothesChart = document.querySelectorAll('.masterpieceBlackClothesChart');
+
+var masterpieceBlackClothesChartLength = masterpieceBlackClothesChart.length;
+
+var masterpieceBlackClothesAV = new Array(masterpieceBlackClothesChartLength).fill(0);
+var masterpieceBlackClothesrealAV = new Array(masterpieceBlackClothesChartLength).fill(0);
+var datamasterpieceBlackClothes = new Array(masterpieceBlackClothesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceBlackClothesreal = new Array(masterpieceBlackClothesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceBlackClothes chart function
+function masterpieceBlackClothesChartFunction(){
+	for(var l = 0;l < masterpieceBlackClothesChartLength;l++){
+		//percentage object->string->number
+		var masterpieceBlackClothesPercentage1 = masterpieceBlackClothesPercentage[(l*3)+1].innerText;
+		masterpieceBlackClothesPercentage1 = (Number(masterpieceBlackClothesPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceBlackClothesPercentage2 = masterpieceBlackClothesPercentage[(l*3)+2].innerText;
+		masterpieceBlackClothesPercentage2 = (Number(masterpieceBlackClothesPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceBlackClothes1 = d3.randomGeometric(masterpieceBlackClothesPercentage1);
+		const masterpieceBlackClothes2 = d3.randomGeometric(masterpieceBlackClothesPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceBlackClothes1();
+			datamasterpieceBlackClothes[l][i] = tmp1;
+			
+			var tmp2 = masterpieceBlackClothes2();
+			datamasterpieceBlackClothesreal[l][i] = tmp2;
+
+			masterpieceBlackClothesAV[l] += tmp1;
+			masterpieceBlackClothesrealAV[l] += tmp2;
+		}
+
+		datamasterpieceBlackClothes[l].sort(function(a, b){return a - b;});
+		datamasterpieceBlackClothesreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceBlackClothesAV[l] /= arrayLength;
+		masterpieceBlackClothesrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceBlackClothesChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceBlackClothes[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceBlackClothesreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceBlackClothesChartFunction
+

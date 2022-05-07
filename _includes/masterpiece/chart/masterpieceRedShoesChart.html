@@ -1,0 +1,70 @@
+var masterpieceRedShoesPercentage = document.querySelectorAll('#masterpieceRedShoes .details .data table tbody tr td');
+
+var masterpieceRedShoesChart = document.querySelectorAll('.masterpieceRedShoesChart');
+
+var masterpieceRedShoesChartLength = masterpieceRedShoesChart.length;
+
+var masterpieceRedShoesAV = new Array(masterpieceRedShoesChartLength).fill(0);
+var masterpieceRedShoesrealAV = new Array(masterpieceRedShoesChartLength).fill(0);
+var datamasterpieceRedShoes = new Array(masterpieceRedShoesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceRedShoesreal = new Array(masterpieceRedShoesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceRedShoes chart function
+function masterpieceRedShoesChartFunction(){
+	for(var l = 0;l < masterpieceRedShoesChartLength;l++){
+		//percentage object->string->number
+		var masterpieceRedShoesPercentage1 = masterpieceRedShoesPercentage[(l*3)+1].innerText;
+		masterpieceRedShoesPercentage1 = (Number(masterpieceRedShoesPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceRedShoesPercentage2 = masterpieceRedShoesPercentage[(l*3)+2].innerText;
+		masterpieceRedShoesPercentage2 = (Number(masterpieceRedShoesPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceRedShoes1 = d3.randomGeometric(masterpieceRedShoesPercentage1);
+		const masterpieceRedShoes2 = d3.randomGeometric(masterpieceRedShoesPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceRedShoes1();
+			datamasterpieceRedShoes[l][i] = tmp1;
+			
+			var tmp2 = masterpieceRedShoes2();
+			datamasterpieceRedShoesreal[l][i] = tmp2;
+
+			masterpieceRedShoesAV[l] += tmp1;
+			masterpieceRedShoesrealAV[l] += tmp2;
+		}
+
+		datamasterpieceRedShoes[l].sort(function(a, b){return a - b;});
+		datamasterpieceRedShoesreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceRedShoesAV[l] /= arrayLength;
+		masterpieceRedShoesrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceRedShoesChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceRedShoes[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceRedShoesreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceRedShoesChartFunction
+

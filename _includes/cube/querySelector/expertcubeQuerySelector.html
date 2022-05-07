@@ -1,0 +1,19 @@
+var expertTitle1 = document.querySelectorAll('#expertcube .details .data .header h2');
+var expertTitleLength = expertTitle1.length;
+for(var i = 0;i < expertTitleLength;i++){
+	expertTitle1[i].innerText = subTitle1[0].textContent+'\n'+subTitle2[0].textContent;
+}
+
+var expertThead = document.querySelectorAll('#expertcube .details .data table thead');
+var expertThead1 = basic[4].querySelector('thead');
+var expertTheadLength = expertThead.length;
+for(var i = 0;i < expertTheadLength;i++){
+	expertThead[i].innerHTML = expertThead1.innerHTML;
+}
+
+var expertTbody = document.querySelectorAll('#expertcube .details .data table tbody');
+var expertTbody1 = basic[4].querySelectorAll('tbody tr');
+var expertTbodyLength = expertTbody.length;
+for(var i = 0;i < expertTbodyLength;i++){
+	expertTbody[i].innerHTML = expertTbody1[i].innerHTML;
+}

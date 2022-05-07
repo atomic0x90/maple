@@ -1,0 +1,19 @@
+var blackTitle1 = document.querySelectorAll('#blackcube .details .data .header h2');
+var blackTitleLength = blackTitle1.length;
+for(var i = 0;i < blackTitleLength;i++){
+	blackTitle1[i].innerText = subTitle1[0].textContent+'\n'+subTitle2[0].textContent;
+}
+
+var blackThead = document.querySelectorAll('#blackcube .details .data table thead');
+var blackThead1 = basic[1].querySelector('thead');
+var blackTheadLength = blackThead.length;
+for(var i = 0;i < blackTheadLength;i++){
+	blackThead[i].innerHTML = blackThead1.innerHTML;
+}
+
+var blackTbody = document.querySelectorAll('#blackcube .details .data table tbody');
+var blackTbody1 = basic[1].querySelectorAll('tbody tr');
+var blackTbodyLength = blackTbody.length;
+for(var i = 0;i < blackTbodyLength;i++){
+	blackTbody[i].innerHTML = blackTbody1[i].innerHTML;
+}

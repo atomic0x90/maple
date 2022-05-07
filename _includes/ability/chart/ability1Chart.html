@@ -1,0 +1,152 @@
+var dataAbility1UL = [];
+var dataAbility1EU = [];
+var dataAbility1RE = [];
+var dataAbility1REreal = [];
+var dataAbility1EUreal = [];
+var dataAbility1ULreal = [];
+
+var ability1REAV = 0;
+var ability1EUAV = 0;
+var ability1ULAV = 0;
+
+var ability1RErealAV = 0;
+var ability1EUrealAV = 0;
+var ability1ULrealAV = 0;
+
+var ability1Percentage = document.querySelectorAll('#ability1 .details .data table tbody tr td');
+
+
+//percentage object->string->number
+var ability1Percentage1 = ability1Percentage[2].innerText;
+ability1Percentage1 = (Number(ability1Percentage1.slice(0,-1))/100).toFixed(5);
+var ability1Percentage2 = ability1Percentage[3].innerText;
+ability1Percentage2 = (Number(ability1Percentage2.slice(0,-1))/100).toFixed(5);
+
+var ability1Percentage3 = ability1Percentage[9].innerText;
+ability1Percentage3 = (Number(ability1Percentage3.slice(0,-1))/100).toFixed(5);
+var ability1Percentage4 = ability1Percentage[10].innerText;
+ability1Percentage4 = (Number(ability1Percentage4.slice(0,-1))/100).toFixed(5);
+
+var ability1Percentage5 = ability1Percentage[16].innerText;
+ability1Percentage5 = (Number(ability1Percentage5.slice(0,-1))/100).toFixed(5);
+var ability1Percentage6 = ability1Percentage[17].innerText;
+ability1Percentage6 = (Number(ability1Percentage6.slice(0,-1))/100).toFixed(5);
+
+
+
+//ability1 chart function
+function ability1ChartFunction(){
+
+	
+	//data setting
+	const ability1 = d3.randomGeometric(ability1Percentage1);
+	const ability2 = d3.randomGeometric(ability1Percentage2);
+	const ability3 = d3.randomGeometric(ability1Percentage3);
+	const ability4 = d3.randomGeometric(ability1Percentage4);
+	const ability5 = d3.randomGeometric(ability1Percentage5);
+	const ability6 = d3.randomGeometric(ability1Percentage6);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = ability1();
+		dataAbility1RE[i] = tmp1;
+		
+		var tmp2 = ability2();
+		dataAbility1REreal[i] = tmp2;
+
+		var tmp3 = ability3();
+		dataAbility1EU[i] = tmp3;
+	
+		var tmp4 = ability4();
+		dataAbility1EUreal[i] = tmp4;
+
+		var tmp5 = ability5();
+		dataAbility1UL[i] = tmp5;
+	
+		var tmp6 = ability6();
+		dataAbility1ULreal[i] = tmp6;
+		
+		ability1REAV += tmp1;
+		ability1EUAV += tmp2;
+		ability1ULAV += tmp3;
+		ability1RErealAV += tmp4;
+		ability1EUrealAV += tmp5;
+		ability1ULrealAV += tmp6;
+	}
+
+	dataAbility1RE.sort(function(a, b){return a - b;});
+	dataAbility1REreal.sort(function(a, b){return a - b;});
+	dataAbility1EU.sort(function(a, b){return a - b;});
+	dataAbility1EUreal.sort(function(a, b){return a - b;});
+	dataAbility1UL.sort(function(a, b){return a - b;});
+	dataAbility1ULreal.sort(function(a, b){return a - b;});
+
+	ability1REAV /= arrayLength;
+	ability1EUAV /= arrayLength;
+	ability1ULAV /= arrayLength;
+	ability1RErealAV /= arrayLength;
+	ability1EUrealAV /= arrayLength;
+	ability1ULrealAV /= arrayLength;
+
+	//chart
+	var ability1Chart = document.querySelectorAll('.ability1Chart');
+	new Chart(ability1Chart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAbility1RE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAbility1REreal
+		}
+	      ]
+	    },
+	    options: {% include ability/chart/chartOption.html %}
+	});
+
+	new Chart(ability1Chart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAbility1EU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAbility1EUreal
+		}
+	      ]
+	    },
+	    options: {% include ability/chart/chartOption.html %}
+	});
+	
+	new Chart(ability1Chart[2], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAbility1UL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAbility1ULreal
+		}
+	      ]
+	    },
+	    options: {% include ability/chart/chartOption.html %}
+	});
+
+}//ability1ChartFunction
+

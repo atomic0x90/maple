@@ -1,0 +1,33 @@
+function loyalStyleCommentFunction(){
+	var loyalStyleComment = document.querySelectorAll('#loyalStyle .details .data .comment');
+	var loyalStyleCost = 2200;
+
+	
+	var loyalStyleCommentLength = loyalStyleComment.length;
+	for(var i = 0;i < loyalStyleCommentLength;i++){
+		var loyalStyleName = loyalStyleThead1[i].querySelectorAll('tr th')[0].innerText;
+	
+		loyalStyleComment[i].innerText =
+		'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+		'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+		'- '+loyalStyleName+' 비용은 '+loyalStyleCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+		'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+		loyalStyleName+' 설정 확률 평균 값 : '+loyalStyleAV[i]+'개'+'\n'+
+		loyalStyleName+' 실제 확률 평균 값 : '+loyalStylerealAV[i]+'개'+'\n'+'\n'+
+
+		loyalStyleName+' 설정 확률 중간 값 : '+dataloyalStyle[i][(arrayLength/2)-1]+'개'+'\n'+
+		loyalStyleName+' 실제 확률 중간 값 : '+dataloyalStylereal[i][(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+		loyalStyleName+' 설정 확률 상위 20% 값 : '+dataloyalStyle[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		loyalStyleName+' 실제 확률 상위 20% 값 : '+dataloyalStylereal[i][((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+		loyalStyleName+' 설정 확률 상위 80% 값 : '+dataloyalStyle[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		loyalStyleName+' 실제 확률 상위 80% 값 : '+dataloyalStylereal[i][((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+		loyalStyleName+' 설정 확률 평균 비용 : '+(loyalStyleAV[i]*loyalStyleCost).toLocaleString()+'원'+'\n'+
+		loyalStyleName+' 실제 확률 평균 비용 : '+(loyalStylerealAV[i]*loyalStyleCost).toLocaleString()+'원'+'\n'+'\n'
+		;
+
+	}
+}

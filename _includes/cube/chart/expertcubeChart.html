@@ -1,0 +1,108 @@
+var dataExpertEU = [];
+var dataExpertRE = [];
+var dataExpertREreal = [];
+var dataExpertEUreal = [];
+
+var expertREAV = 0;
+var expertEUAV = 0;
+
+var expertRErealAV = 0;
+var expertEUrealAV = 0;
+
+var expertPercentage = document.querySelectorAll('#expertcube .details .data table tbody tr td');
+
+//percentage object->string->number
+var expertPercentage1 = expertPercentage[3].innerText;
+expertPercentage1 = (Number(expertPercentage1.slice(0,-1))/100).toFixed(7);
+var expertPercentage2 = expertPercentage[4].innerText;
+expertPercentage2 = (Number(expertPercentage2.slice(0,-1))/100).toFixed(7);
+
+var expertPercentage3 = expertPercentage[8].innerText;
+expertPercentage3 = (Number(expertPercentage3.slice(0,-1))/100).toFixed(7);
+var expertPercentage4 = expertPercentage[9].innerText;
+expertPercentage4 = (Number(expertPercentage4.slice(0,-1))/100).toFixed(7);
+
+
+
+//expertcube chart function
+function expertcubeChartFunction(){
+
+	
+	//data setting
+	const expert1 = d3.randomGeometric(expertPercentage1);
+	const expert2 = d3.randomGeometric(expertPercentage2);
+	const expert3 = d3.randomGeometric(expertPercentage3);
+	const expert4 = d3.randomGeometric(expertPercentage4);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = expert1();
+		dataExpertRE[i] = tmp1;
+		
+		var tmp2 = expert2();
+		dataExpertREreal[i] = tmp2;
+
+		var tmp3 = expert3();
+		dataExpertEU[i] = tmp3;
+	
+		var tmp4 = expert4();
+		dataExpertEUreal[i] = tmp4;
+
+		expertREAV += tmp1;
+		expertEUAV += tmp3;
+		expertRErealAV += tmp2;
+		expertEUrealAV += tmp4;
+	}
+
+	dataExpertRE.sort(function(a, b){return a - b;});
+	dataExpertREreal.sort(function(a, b){return a - b;});
+	dataExpertEU.sort(function(a, b){return a - b;});
+	dataExpertEUreal.sort(function(a, b){return a - b;});
+
+	expertREAV /= arrayLength;
+	expertEUAV /= arrayLength;
+	expertRErealAV /= arrayLength;
+	expertEUrealAV /= arrayLength;
+
+	//chart
+	var expertCubeChart = document.querySelectorAll('.expertCubeChart');
+	new Chart(expertCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataExpertRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataExpertREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+	new Chart(expertCubeChart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataExpertEU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataExpertEUreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//expertcubeChartFunction
+

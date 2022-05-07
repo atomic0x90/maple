@@ -1,0 +1,70 @@
+var beautyWomanFacePercentage = document.querySelectorAll('#beautyWomanFace .details .data table tbody tr td');
+
+var beautyWomanFaceChart = document.querySelectorAll('.beautyWomanFaceChart');
+	
+var beautyWomanFaceChartLength = beautyWomanFaceChart.length;
+
+var beautyWomanFaceAV = new Array(beautyWomanFaceChartLength).fill(0);
+var beautyWomanFacerealAV = new Array(beautyWomanFaceChartLength).fill(0);
+var databeautyWomanFace = new Array(beautyWomanFaceChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var databeautyWomanFacereal = new Array(beautyWomanFaceChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//beautyWomanFace chart function
+function beautyWomanFaceChartFunction(){
+	for(var l = 0;l < beautyWomanFaceChartLength;l++){
+		//percentage object->string->number
+		var beautyWomanFacePercentage1 = beautyWomanFacePercentage[(l*3)+1].innerText;
+		beautyWomanFacePercentage1 = (Number(beautyWomanFacePercentage1.slice(0,-1))/100).toFixed(5);
+		var beautyWomanFacePercentage2 = beautyWomanFacePercentage[(l*3)+2].innerText;
+		beautyWomanFacePercentage2 = (Number(beautyWomanFacePercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const beautyWomanFace1 = d3.randomGeometric(beautyWomanFacePercentage1);
+		const beautyWomanFace2 = d3.randomGeometric(beautyWomanFacePercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = beautyWomanFace1();
+			databeautyWomanFace[l][i] = tmp1;
+			
+			var tmp2 = beautyWomanFace2();
+			databeautyWomanFacereal[l][i] = tmp2;
+
+			beautyWomanFaceAV[l] += tmp1;
+			beautyWomanFacerealAV[l] += tmp2;
+		}
+
+		databeautyWomanFace[l].sort(function(a, b){return a - b;});
+		databeautyWomanFacereal[l].sort(function(a, b){return a - b;});
+
+		beautyWomanFaceAV[l] /= arrayLength;
+		beautyWomanFacerealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(beautyWomanFaceChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: databeautyWomanFace[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: databeautyWomanFacereal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//beautyWomanFaceChartFunction
+

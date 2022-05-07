@@ -1,0 +1,70 @@
+var masterpieceRedClothesPercentage = document.querySelectorAll('#masterpieceRedClothes .details .data table tbody tr td');
+
+var masterpieceRedClothesChart = document.querySelectorAll('.masterpieceRedClothesChart');
+
+var masterpieceRedClothesChartLength = masterpieceRedClothesChart.length;
+
+var masterpieceRedClothesAV = new Array(masterpieceRedClothesChartLength).fill(0);
+var masterpieceRedClothesrealAV = new Array(masterpieceRedClothesChartLength).fill(0);
+var datamasterpieceRedClothes = new Array(masterpieceRedClothesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceRedClothesreal = new Array(masterpieceRedClothesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceRedClothes chart function
+function masterpieceRedClothesChartFunction(){
+	for(var l = 0;l < masterpieceRedClothesChartLength;l++){
+		//percentage object->string->number
+		var masterpieceRedClothesPercentage1 = masterpieceRedClothesPercentage[(l*3)+1].innerText;
+		masterpieceRedClothesPercentage1 = (Number(masterpieceRedClothesPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceRedClothesPercentage2 = masterpieceRedClothesPercentage[(l*3)+2].innerText;
+		masterpieceRedClothesPercentage2 = (Number(masterpieceRedClothesPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceRedClothes1 = d3.randomGeometric(masterpieceRedClothesPercentage1);
+		const masterpieceRedClothes2 = d3.randomGeometric(masterpieceRedClothesPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceRedClothes1();
+			datamasterpieceRedClothes[l][i] = tmp1;
+			
+			var tmp2 = masterpieceRedClothes2();
+			datamasterpieceRedClothesreal[l][i] = tmp2;
+
+			masterpieceRedClothesAV[l] += tmp1;
+			masterpieceRedClothesrealAV[l] += tmp2;
+		}
+
+		datamasterpieceRedClothes[l].sort(function(a, b){return a - b;});
+		datamasterpieceRedClothesreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceRedClothesAV[l] /= arrayLength;
+		masterpieceRedClothesrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceRedClothesChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceRedClothes[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceRedClothesreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceRedClothesChartFunction
+

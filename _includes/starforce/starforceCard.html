@@ -1,0 +1,88 @@
+<div id='starforceCard'>
+	<!-- cards -->
+	<div class='starforceBox'>
+		<div class='starforce'>
+			<div class='starforceName'>파괴방지 X, 스타캐치 X</div>
+			<div class='iconBx'>
+				<div class='starforce1'>
+					<ion-icon name='star-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='starforce'>
+			<div class='starforceName'>파괴방지 X, 스타캐치 O</div>
+			<div class='iconBx'>
+				<div class='starforce2'>
+					<ion-icon name='star-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='cardAdsense'>
+{% include cardAdsense.html %}
+</div>
+
+<div class='starforce1Container' style='display:block;'>
+	{% include starforce/starforce1.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='starforce2Container' style='display:none;'>
+	{% include starforce/starforce2.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+
+<script>
+	//starforce toggle
+	var starforcelist = document.querySelectorAll('.starforceBox .starforce');
+
+	var starforce1Container = document.querySelector('.starforce1Container');
+	var starforce2Container = document.querySelector('.starforce2Container');
+
+	function starforceDisplayNoneFunction(){
+		starforce1Container.style.display = 'none'; 
+		starforce2Container.style.display = 'none';
+	}
+
+	starforcelist[0].addEventListener('click',function(){
+		starforceDisplayNoneFunction();
+		starforce1Container.style.display = 'block';
+	});
+	starforcelist[1].addEventListener('click',function(){
+		starforceDisplayNoneFunction();
+		starforce2Container.style.display = 'block';
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

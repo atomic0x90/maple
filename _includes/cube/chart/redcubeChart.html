@@ -1,0 +1,151 @@
+var dataRedUL = [];
+var dataRedEU = [];
+var dataRedRE = [];
+var dataRedREreal = [];
+var dataRedEUreal = [];
+var dataRedULreal = [];
+
+var redREAV = 0;
+var redEUAV = 0;
+var redULAV = 0;
+
+var redRErealAV = 0;
+var redEUrealAV = 0;
+var redULrealAV = 0;
+
+var redPercentage = document.querySelectorAll('#redcube .details .data table tbody tr td');
+
+//percentage object->string->number
+var redPercentage1 = redPercentage[1].innerText;
+redPercentage1 = (Number(redPercentage1.slice(0,-1))/100).toFixed(7);
+var redPercentage2 = redPercentage[2].innerText;
+redPercentage2 = (Number(redPercentage2.slice(0,-1))/100).toFixed(7);
+
+var redPercentage3 = redPercentage[4].innerText;
+redPercentage3 = (Number(redPercentage3.slice(0,-1))/100).toFixed(7);
+var redPercentage4 = redPercentage[5].innerText;
+redPercentage4 = (Number(redPercentage4.slice(0,-1))/100).toFixed(7);
+
+var redPercentage5 = redPercentage[7].innerText;
+redPercentage5 = (Number(redPercentage5.slice(0,-1))/100).toFixed(7);
+var redPercentage6 = redPercentage[8].innerText;
+redPercentage6 = (Number(redPercentage6.slice(0,-1))/100).toFixed(7);
+
+
+
+//redcube chart function
+function redcubeChartFunction(){
+
+	
+	//data setting
+	const red1 = d3.randomGeometric(redPercentage1);
+	const red2 = d3.randomGeometric(redPercentage2);
+	const red3 = d3.randomGeometric(redPercentage3);
+	const red4 = d3.randomGeometric(redPercentage4);
+	const red5 = d3.randomGeometric(redPercentage5);
+	const red6 = d3.randomGeometric(redPercentage6);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = red1();
+		dataRedRE[i] = tmp1;
+		
+		var tmp2 = red2();
+		dataRedREreal[i] = tmp2;
+
+		var tmp3 = red3();
+		dataRedEU[i] = tmp3;
+	
+		var tmp4 = red4();
+		dataRedEUreal[i] = tmp4;
+
+		var tmp5 = red5();
+		dataRedUL[i] = tmp5;
+	
+		var tmp6 = red6();
+		dataRedULreal[i] = tmp6;
+
+		redREAV += tmp1;
+		redEUAV += tmp3;
+		redULAV += tmp5;
+		redRErealAV += tmp2;
+		redEUrealAV += tmp4;
+		redULrealAV += tmp6;
+	}
+
+	dataRedRE.sort(function(a, b){return a - b;});
+	dataRedREreal.sort(function(a, b){return a - b;});
+	dataRedEU.sort(function(a, b){return a - b;});
+	dataRedEUreal.sort(function(a, b){return a - b;});
+	dataRedUL.sort(function(a, b){return a - b;});
+	dataRedULreal.sort(function(a, b){return a - b;});
+
+	redREAV /= arrayLength;
+	redEUAV /= arrayLength;
+	redULAV /= arrayLength;
+	redRErealAV /= arrayLength;
+	redEUrealAV /= arrayLength;
+	redULrealAV /= arrayLength;
+
+	//chart
+	var redCubeChart = document.querySelectorAll('.redCubeChart');
+	new Chart(redCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataRedRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataRedREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+	new Chart(redCubeChart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataRedEU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataRedEUreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+	
+	new Chart(redCubeChart[2], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataRedUL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataRedULreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//redcubeChartFunction
+

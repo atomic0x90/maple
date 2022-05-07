@@ -1,0 +1,20 @@
+var redTitle1 = document.querySelectorAll('#redcube .details .data .header h2');
+var redTitleLength = redTitle1.length;
+for(var i = 0;i < redTitleLength;i++){
+	redTitle1[i].innerText = subTitle1[0].textContent+'\n'+subTitle2[0].textContent;
+}
+
+var redThead = document.querySelectorAll('#redcube .details .data table thead');
+var redThead1 = basic[0].querySelector('thead');
+var redTheadLength = redThead.length;
+for(var i = 0;i < redTheadLength;i++){
+	redThead[i].innerHTML = redThead1.innerHTML;
+}
+
+var redTbody = document.querySelectorAll('#redcube .details .data table tbody');
+var redTbody1 = basic[0].querySelectorAll('tbody tr');
+var redTbodyLength = redTbody.length;
+for(var i = 0;i < redTbodyLength;i++){
+	redTbody[i].innerHTML = redTbody1[i].innerHTML;
+}
+

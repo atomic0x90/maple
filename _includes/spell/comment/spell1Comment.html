@@ -1,0 +1,43 @@
+function spell1CommentFunction(){
+	var spell1Comment = document.querySelectorAll('#spell1 .details .data .comment');
+	var spell1CommentLength = spell1Comment.length;
+	for(var i = 0;i < spell1CommentLength;i++){
+		var spell1Name = spell1Tbody1[i*2].querySelectorAll('tr td')[0].innerText;
+		spell1Name = spell1Name.replace(/(\r\n|\n|\r)/gm,'');
+
+		spell1Comment[i].innerText =
+		'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+		'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+		'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+		spell1Name+' (피버타임 X) 설정 확률 평균 값 : '+spell1AV[i]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 최대 적용 확률 평균 값 : '+spell1MaxAV[i]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 실제 확률 평균 값 : '+spell1realAV[i]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 설정 확률 평균 값 : '+spell1AVSun[i]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 최대 적용 확률 평균 값 : '+spell1MaxAVSun[i]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 실제 확률 평균 값 : '+spell1realAVSun[i]+'개'+'\n'+'\n'+
+
+
+		spell1Name+' (피버타임 X) 설정 확률 중간 값 : '+dataspell1[i][(arrayLength/2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 최대 적용 확률 중간 값 : '+dataspell1max[i][(arrayLength/2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 실제 확률 중간 값 : '+dataspell1real[i][(arrayLength/2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 설정 확률 중간 값 : '+dataspell1Sun[i][(arrayLength/2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 최대 적용 확률 중간 값 : '+dataspell1maxSun[i][(arrayLength/2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 실제 확률 중간 값 : '+dataspell1realSun[i][(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+		spell1Name+' (피버타임 X) 설정 확률 상위 20% 값 : '+dataspell1[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 최대 적용 확률 상위 20% 값 : '+dataspell1max[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 실제 확률 상위 20% 값 : '+dataspell1real[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 설정 확률 상위 20% 값 : '+dataspell1Sun[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 최대 적용 확률 상위 20% 값 : '+dataspell1maxSun[i][((arrayLength/10)*2)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 실제 확률 상위 20% 값 : '+dataspell1realSun[i][((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+		spell1Name+' (피버타임 X) 설정 확률 상위 80% 값 : '+dataspell1[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 최대 적용 확률 상위 80% 값 : '+dataspell1max[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 X) 실제 확률 상위 80% 값 : '+dataspell1real[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 설정 확률 상위 80% 값 : '+dataspell1Sun[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 최대 적용 확률 상위 80% 값 : '+dataspell1maxSun[i][((arrayLength/10)*8)-1]+'개'+'\n'+
+		spell1Name+' (피버타임 O) 실제 확률 상위 80% 값 : '+dataspell1realSun[i][((arrayLength/10)*8)-1]+'개'+'\n'+'\n'
+		;
+	}
+}

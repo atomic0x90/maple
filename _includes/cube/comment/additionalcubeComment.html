@@ -1,0 +1,92 @@
+function additionalcubeCommentFunction(){
+	var additionalComment = document.querySelectorAll('#additionalcube .details .data .comment');
+	var additionalcubeName = additionalThead[0].querySelectorAll('tr th')[0].innerText;
+	var additionalcubeCost = 2400;
+
+	additionalComment[0].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+additionalcubeName+' 비용은 '+additionalcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 값 : '+additionalREAV+'개'+'\n'+
+	additionalcubeName+' 실제 확률 평균 값 : '+additionalRErealAV+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 중간 값 : '+dataAdditionalRE[(arrayLength/2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 중간 값 : '+dataAdditionalREreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 값 : '+dataAdditionalRE[((arrayLength/10)*2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 값 : '+dataAdditionalREreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 값 : '+dataAdditionalRE[((arrayLength/10)*8)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 값 : '+dataAdditionalREreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 비용 : '+(additionalREAV*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 평균 비용 : '+(additionalRErealAV*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 비용 : '+(dataAdditionalRE[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 비용 : '+(dataAdditionalREreal[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 비용 : '+(dataAdditionalRE[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 비용 : '+(dataAdditionalREreal[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'
+	;
+
+
+	additionalComment[1].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+additionalcubeName+' 비용은 '+additionalcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 값 : '+additionalEUAV+'개'+'\n'+
+	additionalcubeName+' 실제 확률 평균 값 : '+additionalEUrealAV+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 중간 값 : '+dataAdditionalEU[(arrayLength/2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 중간 값 : '+dataAdditionalEUreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 값 : '+dataAdditionalEU[((arrayLength/10)*2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 값 : '+dataAdditionalEUreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 값 : '+dataAdditionalEU[((arrayLength/10)*8)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 값 : '+dataAdditionalEUreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 비용 : '+(additionalEUAV*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 평균 비용 : '+(additionalEUrealAV*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 비용 : '+(dataAdditionalEU[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 비용 : '+(dataAdditionalEUreal[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 비용 : '+(dataAdditionalEU[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 비용 : '+(dataAdditionalEUreal[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'
+	;
+
+	additionalComment[2].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+additionalcubeName+' 비용은 '+additionalcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 값 : '+additionalULAV+'개'+'\n'+
+	additionalcubeName+' 실제 확률 평균 값 : '+additionalULrealAV+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 중간 값 : '+dataAdditionalUL[(arrayLength/2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 중간 값 : '+dataAdditionalULreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 값 : '+dataAdditionalUL[((arrayLength/10)*2)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 값 : '+dataAdditionalULreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 값 : '+dataAdditionalUL[((arrayLength/10)*8)-1]+'개'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 값 : '+dataAdditionalULreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 평균 비용 : '+(additionalULAV*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 평균 비용 : '+(additionalULrealAV*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 20% 비용 : '+(dataAdditionalUL[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 20% 비용 : '+(dataAdditionalULreal[((arrayLength/10)*2)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	additionalcubeName+' 설정 확률 상위 80% 비용 : '+(dataAdditionalUL[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'+'\n'+
+	additionalcubeName+' 실제 확률 상위 80% 비용 : '+(dataAdditionalULreal[((arrayLength/10)*8)-1]*additionalcubeCost).toLocaleString()+'원'
+	;
+
+
+}

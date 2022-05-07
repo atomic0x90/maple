@@ -1,0 +1,21 @@
+var masterpieceRedHatTitle = document.querySelectorAll('#masterpieceRedHat .details .data .header h2');
+var masterpieceRedHatTitleLength = masterpieceRedHatTitle.length;
+for(var i = 0;i < masterpieceRedHatTitleLength;i++){
+	masterpieceRedHatTitle[i].innerText = sq_bul[5].textContent.substring(1,sq_bul[5].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var masterpieceRedHatThead1 = document.querySelectorAll('#masterpieceRedHat .details .data table thead');
+var masterpieceRedHatThead2 = type2[1].querySelector('thead');
+var masterpieceRedHatTheadLength = masterpieceRedHatThead1.length;
+for(var i = 0;i < masterpieceRedHatTheadLength;i++){
+	masterpieceRedHatThead1[i].innerHTML = masterpieceRedHatThead2.innerHTML;
+}
+
+var masterpieceRedHatTbody1 = document.querySelectorAll('#masterpieceRedHat .details .data table tbody tr');
+var masterpieceRedHatTbody2 = type2[1].querySelectorAll('tbody tr');
+var masterpieceRedHatTbodyLength = masterpieceRedHatTbody1.length;
+for(var i = 0;i < masterpieceRedHatTbodyLength;i++){
+	masterpieceRedHatTbody1[i].innerHTML = masterpieceRedHatTbody2[i].innerHTML;
+}

@@ -1,0 +1,21 @@
+var masterpieceRedClothesTitle = document.querySelectorAll('#masterpieceRedClothes .details .data .header h2');
+var masterpieceRedClothesTitleLength = masterpieceRedClothesTitle.length;
+for(var i = 0;i < masterpieceRedClothesTitleLength;i++){
+	masterpieceRedClothesTitle[i].innerText = sq_bul[5].textContent.substring(1,sq_bul[5].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var masterpieceRedClothesThead1 = document.querySelectorAll('#masterpieceRedClothes .details .data table thead');
+var masterpieceRedClothesThead2 = type2[2].querySelector('thead');
+var masterpieceRedClothesTheadLength = masterpieceRedClothesThead1.length;
+for(var i = 0;i < masterpieceRedClothesTheadLength;i++){
+	masterpieceRedClothesThead1[i].innerHTML = masterpieceRedClothesThead2.innerHTML;
+}
+
+var masterpieceRedClothesTbody1 = document.querySelectorAll('#masterpieceRedClothes .details .data table tbody tr');
+var masterpieceRedClothesTbody2 = type2[2].querySelectorAll('tbody tr');
+var masterpieceRedClothesTbodyLength = masterpieceRedClothesTbody1.length;
+for(var i = 0;i < masterpieceRedClothesTbodyLength;i++){
+	masterpieceRedClothesTbody1[i].innerHTML = masterpieceRedClothesTbody2[i].innerHTML;
+}

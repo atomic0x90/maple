@@ -1,0 +1,18 @@
+var ability1Title1 = document.querySelectorAll('#ability1 .details .data .header h2');
+for(var i = 0;i < ability1Title1.length;i++){
+	ability1Title1[i].innerText = subTitle1[1].textContent+'\n'+subTitle2[1].textContent+'\n'+sq_bul[2].textContent.slice(1,-1);
+}
+
+var ability1Thead1 = document.querySelectorAll('#ability1 .details .data table thead');
+var ability1Thead2 = type4[0].querySelector('thead');
+var ability1TheadLength = ability1Thead1.length;
+for(var i = 0;i < ability1TheadLength;i++){
+	ability1Thead1[i].innerHTML = ability1Thead2.innerHTML;
+}
+
+var ability1Tbody1 = document.querySelectorAll('#ability1 .details .data table tbody');
+var ability1Tbody2 = type4[0].querySelectorAll('tbody tr');
+var ability1TbodyLength = ability1Tbody1.length;
+for(var i = 0;i < ability1TbodyLength;i++){
+	ability1Tbody1[i].innerHTML = ability1Tbody2[i].innerHTML;
+}

@@ -1,0 +1,128 @@
+<div id='spellCard'>
+	<!-- cards -->
+	<div class='spellBox'>
+		<div class='spell'>
+			<div class='spellName'>주문의 흔적 주문서</div>
+			<div class='iconBx'>
+				<div class='spell1'>
+					<ion-icon name='receipt-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='spell'>
+			<div class='spellName'>손재주 /길드 스킬에 영향을 받는 주문서</div>
+			<div class='iconBx'>
+				<div class='spell2'>
+					<ion-icon name='receipt-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='spell'>
+			<div class='spellName'>손재주 /길드 스킬에 영향을 받지 않는 주문서</div>
+			<div class='iconBx'>
+				<div class='spell3'>
+					<ion-icon name='receipt-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='spell'>
+			<div class='spellName'>잠재능력과 관련된 주문서 (손재주 /길드 스킬에 영향을 받지 않음)</div>
+			<div class='iconBx'>
+				<div class='spell4'>
+					<ion-icon name='receipt-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='cardAdsense'>
+{% include cardAdsense.html %}
+</div>
+
+<div class='spell1Container' style='display:block;'>
+	{% include spell/spell1.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='spell2Container' style='display:none;'>
+	{% include spell/spell2.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='spell3Container' style='display:none;'>
+	{% include spell/spell3.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='spell4Container' style='display:none;'>
+	{% include spell/spell4.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+
+<script>
+	//spell toggle
+	var spelllist = document.querySelectorAll('.spellBox .spell');
+
+	var spell1Container = document.querySelector('.spell1Container');
+	var spell2Container = document.querySelector('.spell2Container');
+	var spell3Container = document.querySelector('.spell3Container');
+	var spell4Container = document.querySelector('.spell4Container');
+
+	function spellDisplayNoneFunction(){
+		spell1Container.style.display = 'none'; 
+		spell2Container.style.display = 'none';
+		spell3Container.style.display = 'none';
+		spell4Container.style.display = 'none';
+	}
+
+	spelllist[0].addEventListener('click',function(){
+		spellDisplayNoneFunction();
+		spell1Container.style.display = 'block';
+	});
+	spelllist[1].addEventListener('click',function(){
+		spellDisplayNoneFunction();
+		spell2Container.style.display = 'block';
+	});
+	spelllist[2].addEventListener('click',function(){
+		spellDisplayNoneFunction();
+		spell3Container.style.display = 'block';
+	});
+	spelllist[3].addEventListener('click',function(){
+		spellDisplayNoneFunction();
+		spell4Container.style.display = 'block';
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

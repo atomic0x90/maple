@@ -1,0 +1,70 @@
+var masterpieceRedCloakGlovesPercentage = document.querySelectorAll('#masterpieceRedCloakGloves .details .data table tbody tr td');
+
+var masterpieceRedCloakGlovesChart = document.querySelectorAll('.masterpieceRedCloakGlovesChart');
+
+var masterpieceRedCloakGlovesChartLength = masterpieceRedCloakGlovesChart.length;
+
+var masterpieceRedCloakGlovesAV = new Array(masterpieceRedCloakGlovesChartLength).fill(0);
+var masterpieceRedCloakGlovesrealAV = new Array(masterpieceRedCloakGlovesChartLength).fill(0);
+var datamasterpieceRedCloakGloves = new Array(masterpieceRedCloakGlovesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceRedCloakGlovesreal = new Array(masterpieceRedCloakGlovesChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceRedCloakGloves chart function
+function masterpieceRedCloakGlovesChartFunction(){
+	for(var l = 0;l < masterpieceRedCloakGlovesChartLength;l++){
+		//percentage object->string->number
+		var masterpieceRedCloakGlovesPercentage1 = masterpieceRedCloakGlovesPercentage[(l*3)+1].innerText;
+		masterpieceRedCloakGlovesPercentage1 = (Number(masterpieceRedCloakGlovesPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceRedCloakGlovesPercentage2 = masterpieceRedCloakGlovesPercentage[(l*3)+2].innerText;
+		masterpieceRedCloakGlovesPercentage2 = (Number(masterpieceRedCloakGlovesPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceRedCloakGloves1 = d3.randomGeometric(masterpieceRedCloakGlovesPercentage1);
+		const masterpieceRedCloakGloves2 = d3.randomGeometric(masterpieceRedCloakGlovesPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceRedCloakGloves1();
+			datamasterpieceRedCloakGloves[l][i] = tmp1;
+			
+			var tmp2 = masterpieceRedCloakGloves2();
+			datamasterpieceRedCloakGlovesreal[l][i] = tmp2;
+
+			masterpieceRedCloakGlovesAV[l] += tmp1;
+			masterpieceRedCloakGlovesrealAV[l] += tmp2;
+		}
+
+		datamasterpieceRedCloakGloves[l].sort(function(a, b){return a - b;});
+		datamasterpieceRedCloakGlovesreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceRedCloakGlovesAV[l] /= arrayLength;
+		masterpieceRedCloakGlovesrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceRedCloakGlovesChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceRedCloakGloves[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceRedCloakGlovesreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceRedCloakGlovesChartFunction
+

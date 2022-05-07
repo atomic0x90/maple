@@ -1,0 +1,13 @@
+var questionableTitle1 = document.querySelectorAll('#questionablecube .details .data .header h2');
+var questionableTitleLength = questionableTitle1.length;
+for(var i = 0;i < questionableTitleLength;i++){
+	questionableTitle1[i].innerText = subTitle1[0].textContent+'\n'+subTitle2[0].textContent;
+}
+
+var questionableThead = document.querySelector('#questionablecube .details .data table thead');
+var questionableThead1 = basic[3].querySelector('thead');
+questionableThead.innerHTML = questionableThead1.innerHTML;
+
+var questionableTbody = document.querySelector('#questionablecube .details .data table tbody');
+var questionableTbody1 = basic[3].querySelector('tbody tr');
+questionableTbody.innerHTML = questionableTbody1.innerHTML;

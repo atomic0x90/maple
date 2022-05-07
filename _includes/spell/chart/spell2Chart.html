@@ -1,0 +1,95 @@
+var spell2Percentage = document.querySelectorAll('#spell2 .details .data table tbody tr td');
+
+var spell2Chart = document.querySelectorAll('.spell2Chart');
+
+var spell2AV = new Array(spell2Chart.length).fill(0);
+var spell2MaxAV = new Array(spell2Chart.length).fill(0);
+var spell2realAV = new Array(spell2Chart.length).fill(0);
+
+var spell2ChartLength = spell2Chart.length;
+
+var dataspell2 = new Array(spell2ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell2max = new Array(spell2ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell2real = new Array(spell2ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+
+
+
+//spell2 chart function
+function spell2ChartFunction(){
+	for(var l = 0;l < spell2ChartLength;l++){
+		//percentage object->string->number
+		var spell2Percentage1 = spell2Percentage[(l*7)+4].innerText;
+		spell2Percentage1 = (Number(spell2Percentage1.slice(0,-1))/100).toFixed(5);
+		var spell2Percentage2 = spell2Percentage[(l*7)+5].innerText;
+		spell2Percentage2 = (Number(spell2Percentage2.slice(0,-1))/100).toFixed(5);
+		var spell2Percentage3 = spell2Percentage[(l*7)+6].innerText;
+		spell2Percentage3 = (Number(spell2Percentage3.slice(0,-1))/100).toFixed(5);
+
+		//data setting
+		const spell1 = d3.randomGeometric(spell2Percentage1);
+		const spell2 = d3.randomGeometric(spell2Percentage2);
+		const spell3 = d3.randomGeometric(spell2Percentage3);
+
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = spell1();
+			dataspell2[l][i] = tmp1;
+			
+			var tmp2 = spell2();
+			dataspell2max[l][i] = tmp2;
+
+			var tmp3 = spell3();
+			dataspell2real[l][i] = tmp3;
+
+			spell2AV[l] += tmp1;
+			spell2MaxAV[l] += tmp2;
+			spell2realAV[l] += tmp3;
+		}
+
+		dataspell2[l].sort(function(a, b){return a - b;});
+		dataspell2max[l].sort(function(a, b){return a - b;});
+		dataspell2real[l].sort(function(a, b){return a - b;});
+
+		spell2AV[l] /= arrayLength;
+		spell2MaxAV[l] /= arrayLength;
+		spell2realAV[l] /= arrayLength;
+
+
+		//chart
+		
+		new Chart(spell2Chart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: dataspell2[l]
+			},
+			{
+			  label: "손재주, 길드 스킬 최대 적용 확률",
+			  backgroundColor: ["#444548"],
+			  data: dataspell2max[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: dataspell2real[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//spell2ChartFunction
+

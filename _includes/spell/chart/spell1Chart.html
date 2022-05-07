@@ -1,0 +1,155 @@
+var spell1Percentage = document.querySelectorAll('#spell1 .details .data table tbody tr td');
+
+var spell1Chart = document.querySelectorAll('.spell1Chart');
+
+var spell1AV = new Array(spell1Chart.length).fill(0);
+var spell1MaxAV = new Array(spell1Chart.length).fill(0);
+var spell1realAV = new Array(spell1Chart.length).fill(0);
+
+var spell1AVSun = new Array(spell1Chart.length).fill(0);
+var spell1MaxAVSun = new Array(spell1Chart.length).fill(0);
+var spell1realAVSun = new Array(spell1Chart.length).fill(0);
+
+var spell1ChartLength = spell1Chart.length;
+
+var dataspell1 = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell1max = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell1real = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell1Sun = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell1maxSun = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var dataspell1realSun = new Array(spell1ChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//spell1 chart function
+function spell1ChartFunction(){
+	for(var l = 0;l < spell1ChartLength;l++){
+		//percentage object->string->number
+		var spell1Percentage1 = spell1Percentage[(l*14)+4].innerText;
+		spell1Percentage1 = (Number(spell1Percentage1.slice(0,-1))/100).toFixed(5);
+		var spell1Percentage2 = spell1Percentage[(l*14)+5].innerText;
+		spell1Percentage2 = (Number(spell1Percentage2.slice(0,-1))/100).toFixed(5);
+		var spell1Percentage3 = spell1Percentage[(l*14)+6].innerText;
+		spell1Percentage3 = (Number(spell1Percentage3.slice(0,-1))/100).toFixed(5);
+
+		var spell1Percentage4 = spell1Percentage[(l*14)+11].innerText;
+		spell1Percentage4 = (Number(spell1Percentage4.slice(0,-1))/100).toFixed(5);
+		var spell1Percentage5 = spell1Percentage[(l*14)+12].innerText;
+		spell1Percentage5 = (Number(spell1Percentage5.slice(0,-1))/100).toFixed(5);
+		var spell1Percentage6 = spell1Percentage[(l*14)+13].innerText;
+		spell1Percentage6 = (Number(spell1Percentage6.slice(0,-1))/100).toFixed(5);
+
+
+
+		//data setting
+		const spell1 = d3.randomGeometric(spell1Percentage1);
+		const spell2 = d3.randomGeometric(spell1Percentage2);
+		const spell3 = d3.randomGeometric(spell1Percentage3);
+		const spell4 = d3.randomGeometric(spell1Percentage4);
+		const spell5 = d3.randomGeometric(spell1Percentage5);
+		const spell6 = d3.randomGeometric(spell1Percentage6);
+
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = spell1();
+			dataspell1[l][i] = tmp1;
+			
+			var tmp2 = spell2();
+			dataspell1max[l][i] = tmp2;
+
+			var tmp3 = spell3();
+			dataspell1real[l][i] = tmp3;
+
+			var tmp4 = spell4();
+			dataspell1Sun[l][i] = tmp4;
+			
+			var tmp5 = spell5();
+			dataspell1maxSun[l][i] = tmp5;
+
+			var tmp6 = spell6();
+			dataspell1realSun[l][i] = tmp6;
+
+			spell1AV[l] += tmp1;
+			spell1MaxAV[l] += tmp2;
+			spell1realAV[l] += tmp3;
+
+			spell1AVSun[l] += tmp4;
+			spell1MaxAVSun[l] += tmp5;
+			spell1realAVSun[l] += tmp6;
+		}
+
+		dataspell1[l].sort(function(a, b){return a - b;});
+		dataspell1max[l].sort(function(a, b){return a - b;});
+		dataspell1real[l].sort(function(a, b){return a - b;});
+
+		dataspell1Sun[l].sort(function(a, b){return a - b;});
+		dataspell1maxSun[l].sort(function(a, b){return a - b;});
+		dataspell1realSun[l].sort(function(a, b){return a - b;});
+
+		spell1AV[l] /= arrayLength;
+		spell1MaxAV[l] /= arrayLength;
+		spell1realAV[l] /= arrayLength;
+
+		spell1AVSun[l] /= arrayLength;
+		spell1MaxAVSun[l] /= arrayLength;
+		spell1realAVSun[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(spell1Chart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "(피버타임 X) 설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: dataspell1[l]
+			},
+			{
+			  label: "(피버타임 X) 손재주, 길드 스킬 최대 적용 확률",
+			  backgroundColor: ["#444548"],
+			  data: dataspell1max[l]
+			},
+			{
+			  label: "(피버타임 X) 실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: dataspell1real[l]
+			},
+			{
+			  label: "(피버타임 O) 설정 확률",
+			  backgroundColor: ["#ff9773"],
+			  data: dataspell1Sun[l]
+			},
+			{
+			  label: "(피버타임 O) 손재주, 길드 스킬 최대 적용 확률",
+			  backgroundColor: ["#848588"],
+			  data: dataspell1maxSun[l]
+			},
+			{
+			  label: "(피버타임 O) 실제 결과 확률",
+			  backgroundColor: ["#73ffff"],
+			  data: dataspell1realSun[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//spell1ChartFunction
+

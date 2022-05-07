@@ -1,0 +1,70 @@
+var masterpieceBlackHatPercentage = document.querySelectorAll('#masterpieceBlackHat .details .data table tbody tr td');
+
+var masterpieceBlackHatChart = document.querySelectorAll('.masterpieceBlackHatChart');
+
+var masterpieceBlackHatChartLength = masterpieceBlackHatChart.length;
+
+var masterpieceBlackHatAV = new Array(masterpieceBlackHatChartLength).fill(0);
+var masterpieceBlackHatrealAV = new Array(masterpieceBlackHatChartLength).fill(0);
+var datamasterpieceBlackHat = new Array(masterpieceBlackHatChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+var datamasterpieceBlackHatreal = new Array(masterpieceBlackHatChartLength)
+			.fill(0)
+			.map(() => new Array(arrayLength).fill(0));
+
+//masterpieceBlackHat chart function
+function masterpieceBlackHatChartFunction(){
+	for(var l = 0;l < masterpieceBlackHatChartLength;l++){
+		//percentage object->string->number
+		var masterpieceBlackHatPercentage1 = masterpieceBlackHatPercentage[(l*3)+1].innerText;
+		masterpieceBlackHatPercentage1 = (Number(masterpieceBlackHatPercentage1.slice(0,-1))/100).toFixed(5);
+		var masterpieceBlackHatPercentage2 = masterpieceBlackHatPercentage[(l*3)+2].innerText;
+		masterpieceBlackHatPercentage2 = (Number(masterpieceBlackHatPercentage2.slice(0,-1))/100).toFixed(7);
+		
+		//data setting
+		const masterpieceBlackHat1 = d3.randomGeometric(masterpieceBlackHatPercentage1);
+		const masterpieceBlackHat2 = d3.randomGeometric(masterpieceBlackHatPercentage2);
+		for(var i = 0;i < arrayLength;i++){
+			var tmp1 = masterpieceBlackHat1();
+			datamasterpieceBlackHat[l][i] = tmp1;
+			
+			var tmp2 = masterpieceBlackHat2();
+			datamasterpieceBlackHatreal[l][i] = tmp2;
+
+			masterpieceBlackHatAV[l] += tmp1;
+			masterpieceBlackHatrealAV[l] += tmp2;
+		}
+
+		datamasterpieceBlackHat[l].sort(function(a, b){return a - b;});
+		datamasterpieceBlackHatreal[l].sort(function(a, b){return a - b;});
+
+		masterpieceBlackHatAV[l] /= arrayLength;
+		masterpieceBlackHatrealAV[l] /= arrayLength;
+
+		//chart
+		
+		new Chart(masterpieceBlackHatChart[l], {
+		    type: 'line',
+		    data: {
+		      labels: labelArray,
+		      datasets: [
+			{
+			  label: "설정 확률",
+			  backgroundColor: ["#ff5733"],
+			  data: datamasterpieceBlackHat[l]
+			},
+			{
+			  label: "실제 결과 확률",
+			  backgroundColor: ["#33dbff"],
+			  data: datamasterpieceBlackHatreal[l]
+			}
+		      ]
+		    },
+		    options: {% include masterpiece/chart/chartOption.html %}
+		});
+
+	}
+}//masterpieceBlackHatChartFunction
+

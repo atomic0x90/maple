@@ -1,0 +1,128 @@
+<div id='beautyCard'>
+	<!-- cards -->
+	<div class='beautyBox'>
+		<div class='beauty'>
+			<div class='beautyName'>남자 헤어</div>
+			<div class='iconBx'>
+				<div class='manHair'>
+					<ion-icon name='happy-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='beauty'>
+			<div class='beautyName'>여자 헤어</div>
+			<div class='iconBx'>
+				<div class='womanHair'>
+					<ion-icon name='happy-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='beauty'>
+			<div class='beautyName'>남자 성형</div>
+			<div class='iconBx'>
+				<div class='manFace'>
+					<ion-icon name='happy-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='beauty'>
+			<div class='beautyName'>여자 성형</div>
+			<div class='iconBx'>
+				<div class='womanFace'>
+					<ion-icon name='happy-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='cardAdsense'>
+{% include cardAdsense.html %}
+</div>
+
+<div class='beautyManHairContainer' style='display:block;'>
+	{% include beauty/beautyManHair.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='beautyWomanHairContainer' style='display:none;'>
+	{% include beauty/beautyWomanHair.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='beautyManFaceContainer' style='display:none;'>
+	{% include beauty/beautyManFace.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='beautyWomanFaceContainer' style='display:none;'>
+	{% include beauty/beautyWomanFace.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+
+<script>
+	//beauty toggle
+	var beautylist = document.querySelectorAll('.beautyBox .beauty');
+
+	var beautyManHairContainer = document.querySelector('.beautyManHairContainer');
+	var beautyWomanHairContainer = document.querySelector('.beautyWomanHairContainer');
+	var beautyManFaceContainer = document.querySelector('.beautyManFaceContainer');
+	var beautyWomanFaceContainer = document.querySelector('.beautyWomanFaceContainer');
+
+	function beautyDisplayNoneFunction(){
+		beautyManHairContainer.style.display = 'none'; 
+		beautyWomanHairContainer.style.display = 'none';
+		beautyManFaceContainer.style.display = 'none';
+		beautyWomanFaceContainer.style.display = 'none';
+	}
+
+	beautylist[0].addEventListener('click',function(){
+		beautyDisplayNoneFunction();
+		beautyManHairContainer.style.display = 'block';
+	});
+	beautylist[1].addEventListener('click',function(){
+		beautyDisplayNoneFunction();
+		beautyWomanHairContainer.style.display = 'block';
+	});
+	beautylist[2].addEventListener('click',function(){
+		beautyDisplayNoneFunction();
+		beautyManFaceContainer.style.display = 'block';
+	});
+	beautylist[3].addEventListener('click',function(){
+		beautyDisplayNoneFunction();
+		beautyWomanFaceContainer.style.display = 'block';
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

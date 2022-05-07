@@ -1,0 +1,92 @@
+function blackcubeCommentFunction(){
+	var blackComment = document.querySelectorAll('#blackcube .details .data .comment');
+	var blackcubeName = blackThead[0].querySelectorAll('tr th')[0].innerText;
+	var blackcubeCost = 2200;
+
+	blackComment[0].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+blackcubeName+' 비용은 '+blackcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 값 : '+blackREAV+'개'+'\n'+
+	blackcubeName+' 실제 확률 평균 값 : '+blackRErealAV+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 중간 값 : '+dataBlackRE[(arrayLength/2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 중간 값 : '+dataBlackREreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 값 : '+dataBlackRE[((arrayLength/10)*2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 값 : '+dataBlackREreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 값 : '+dataBlackRE[((arrayLength/10)*8)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 값 : '+dataBlackREreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 비용 : '+(blackREAV*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 평균 비용 : '+(blackRErealAV*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 비용 : '+(dataBlackRE[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 비용 : '+(dataBlackREreal[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 비용 : '+(dataBlackRE[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 비용 : '+(dataBlackREreal[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'
+	;
+
+
+	blackComment[1].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+blackcubeName+' 비용은 '+blackcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 값 : '+blackEUAV+'개'+'\n'+
+	blackcubeName+' 실제 확률 평균 값 : '+blackEUrealAV+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 중간 값 : '+dataBlackEU[(arrayLength/2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 중간 값 : '+dataBlackEUreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 값 : '+dataBlackEU[((arrayLength/10)*2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 값 : '+dataBlackEUreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 값 : '+dataBlackEU[((arrayLength/10)*8)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 값 : '+dataBlackEUreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 비용 : '+(blackEUAV*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 평균 비용 : '+(blackEUrealAV*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 비용 : '+(dataBlackEU[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 비용 : '+(dataBlackEUreal[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 비용 : '+(dataBlackEU[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 비용 : '+(dataBlackEUreal[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'
+	;
+
+	blackComment[2].innerText =
+	'- 위 목표 달성 '+arrayLength+'번을 자체 시뮬레이션 한 결과를 바탕으로 도출한 결과값 입니다.'+'\n'+
+	'- 시뮬레이션 할 때마다 값이 달라집니다.'+'\n'+
+	'- '+blackcubeName+' 비용은 '+blackcubeCost.toLocaleString()+'원으로 계산했습니다.'+'\n'+
+	'- 위 확률은 메이플스토리 공식 홈페이지에서 가져왔습니다.'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 값 : '+blackULAV+'개'+'\n'+
+	blackcubeName+' 실제 확률 평균 값 : '+blackULrealAV+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 중간 값 : '+dataBlackUL[(arrayLength/2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 중간 값 : '+dataBlackULreal[(arrayLength/2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 값 : '+dataBlackUL[((arrayLength/10)*2)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 값 : '+dataBlackULreal[((arrayLength/10)*2)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 값 : '+dataBlackUL[((arrayLength/10)*8)-1]+'개'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 값 : '+dataBlackULreal[((arrayLength/10)*8)-1]+'개'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 평균 비용 : '+(blackULAV*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 평균 비용 : '+(blackULrealAV*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 20% 비용 : '+(dataBlackUL[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 20% 비용 : '+(dataBlackULreal[((arrayLength/10)*2)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+'\n'+
+
+	blackcubeName+' 설정 확률 상위 80% 비용 : '+(dataBlackUL[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'+'\n'+
+	blackcubeName+' 실제 확률 상위 80% 비용 : '+(dataBlackULreal[((arrayLength/10)*8)-1]*blackcubeCost).toLocaleString()+'원'
+	;
+
+
+}

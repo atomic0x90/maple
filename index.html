@@ -1,12 +1,517 @@
+---
+---
 <!DOCTYPE html>
-<html>
+<html dir="ltr" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+	<meta name="keywords" content="{{ site.keywords }}">
+	<meta name="description" content="{{ site.description }}">
+	<meta name="theme-color" content="FFA500">
+  <link rel="stylesheet" href="combo.css">
+  <!--<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>-->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  {% if site.favicon %}<link rel="shortcut icon" href="{{ site.favicon }}" type="image/x-icon">{% endif %}
+	{% if site.touch_icon %}<link rel="apple-touch-icon" href="{{ site.touch_icon }}">{% endif %}
+
+	<!-- chart -->
+	<script src="https://cdn.jsdelivr.net/npm/d3-random@3"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
+	<!-- web -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="http://requirejs.org/docs/release/2.3.6/comments/require.js"></script>
+
+	<!-- scroll top -->
+	<script>function scrollToTop(){window.scrollTo({top: 0, behavior: 'smooth'});}</script>
+
+	<!-- google adsense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341434509700379" crossorigin="anonymous"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WKKCCMZTVK"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-WKKCCMZTVK');
+	</script>
 </head>
 <body>
-    <h1>test page</h1>
+  <div id="main">
+	<div class='container'>
+		<div class='navigation'>
+			<ul>
+				<li>
+					<a href='#'>
+						<span class='icon'>
+							<ion-icon name="analytics-outline"></ion-icon>
+						</span>
+						<span class='title'>메이플 확률 데이터 시각화</span>
+					</a>
+				</li>
+				<li class='clicked'>
+					<a href='#' title="설명서">
+						<span class='icon'>
+							<ion-icon name="book-outline"></ion-icon>
+						</span>
+						<span class='title'>설명서</span>
+					</a>
+				</li>
+				<li>
+					<a href='#' title="큐브">
+						<span class='icon'>
+							<ion-icon name='cube-outline'></ion-icon>
+						</span>
+						<span class='title'>큐브</span>
+					</a>
+				</li>
+				<li>
+					<a href='#' title="어빌리티">
+						<span class='icon'>
+							<ion-icon name='list-outline'></ion-icon>
+						</span>
+						<span class='title'>어빌리티</span>
+					</a>
+				</li>
+				<li>
+					<a href='#' title="로얄스타일">
+						<span class='icon'>
+							<ion-icon name='diamond-outline'></ion-icon>
+						</span>
+						<span class='title'>로얄스타일</span>
+					</a>
+				</li>
+				<li>
+					<a href='#' title="헤어, 성형">
+						<span class='icon'>
+							<ion-icon name='happy-outline'></ion-icon>
+						</span>
+						<span class='title'>헤어, 성형</span>
+					</a>
+				</li>				
+				<li>
+					<a href='#' title="주문서">
+						<span class='icon'>
+							<ion-icon name='receipt-outline'></ion-icon>
+						</span>
+						<span class='title'>주문서</span>
+					</a>
+				</li>
+				<li>
+					<a href='#' title="스타포스">
+						<span class='icon'>
+							<ion-icon name='star-outline'></ion-icon>
+						</span>
+						<span class='title'>스타포스</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--main-->
+	<div class='main'>
+		<div class='topbar'>
+			<div class='toggle'>
+				<ion-icon name='menu-outline'></ion-icon>
+			</div>
+			<div class='topAds'>
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341434509700379" crossorigin="anonymous"></script>
+				<ins class="adsbygoogle"
+				     style="display:block; text-align:center;"
+				     data-ad-layout="in-article"
+				     data-ad-format="fluid"
+				     data-ad-client="ca-pub-2341434509700379"
+				     data-ad-slot="5754580865"></ins>
+				<script>
+					window.onload = function() {
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					}
+				</script>
+			</div>
+			<!--userImg--><!--
+			<div class='user'>
+			</div>-->
+		</div>
+		
+
+		<div class='readmeContainer' style='display:block;'>
+		{% include readme.html %}
+		</div>
+		<div class='cubeContainer' style='display:none;'>
+		{% include cube/cubeCard.html %}
+		</div>
+		<div class='abilityContainer' style='display:none;'>
+		{% include ability/abilityCard.html %}
+		</div>
+		<div class='masterpieceContainer' style='display:none;'>
+		{% include masterpiece/masterpieceCard.html %}
+		</div>
+		<div class='beautyContainer' style='display:none;'>
+		{% include beauty/beautyCard.html %}
+		</div>
+		<div class='spellContainer' style='display:none;'>
+		{% include spell/spellCard.html %}
+		</div>
+		<div class='starforceContainer' style='display:none;'>
+		{% include starforce/starforceCard.html %}
+		</div>
+	</div>
+  </div>
+
+	<button id='topScroll' onClick='scrollToTop();return false;'>
+	<ion-icon name="caret-up-outline"></ion-icon>
+	</button>
+
 </body>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	//web crawler
+
+	var url = 'https://maplestory.nexon.com/Guide/ProbabilityResult/MonthData/20220414';
+	var arrayLength = 100;
+
+	//label
+	var labelArray = new Array(arrayLength);
+	for(var i = 0;i < arrayLength;i++) labelArray[i] = i+1;
+
+	/***************************** main function *****************************/
+	require(['https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'],function(axios){
+		axios.get(url)
+			.then(function(response){
+				getMaple = new DOMParser().parseFromString(response.data,'text/html');
+
+				var contents = getMaple.querySelectorAll('.contents_wrap2.sm');
+				var subTitle1 = getMaple.querySelectorAll('.contents_wrap2.sm h2');
+				var subTitle2 = getMaple.querySelectorAll('.contents_wrap2.sm p');
+
+				var basic = getMaple.querySelectorAll('.basic');
+				var type4 = getMaple.querySelectorAll('.type4');
+				var sq_bul = getMaple.querySelectorAll('.sq_bul');
+				var type2 = getMaple.querySelectorAll('.type2');
+				var type3 = getMaple.querySelectorAll('.type3');
+				var type4 = getMaple.querySelectorAll('.type4');
+
+				for(var i = 0;i < subTitle1.length;i++){
+					subTitle1[i].innerText = subTitle1[i].innerText.substr(2,);
+				}
+
+			
+				/********************* cube *********************/
+				/* redcube */
+				{% include cube/querySelector/redcubeQuerySelector.html %}
+				{% include cube/chart/redcubeChart.html %}
+				{% include cube/comment/redcubeComment.html %}
+
+				/* blackcube */
+				{% include cube/querySelector/blackcubeQuerySelector.html %}
+				{% include cube/chart/blackcubeChart.html %}
+				{% include cube/comment/blackcubeComment.html %}
+
+				/* additionalcube */
+				{% include cube/querySelector/additionalcubeQuerySelector.html %}
+				{% include cube/chart/additionalcubeChart.html %}
+				{% include cube/comment/additionalcubeComment.html %}
+
+				/* questionablecube */
+				{% include cube/querySelector/questionablecubeQuerySelector.html %}
+				{% include cube/chart/questionablecubeChart.html %}
+				{% include cube/comment/questionablecubeComment.html %}
+
+				/* expertcube */
+				{% include cube/querySelector/expertcubeQuerySelector.html %}
+				{% include cube/chart/expertcubeChart.html %}
+				{% include cube/comment/expertcubeComment.html %}
+
+				/* mastercube */
+				{% include cube/querySelector/mastercubeQuerySelector.html %}
+				{% include cube/chart/mastercubeChart.html %}
+				{% include cube/comment/mastercubeComment.html %}
+				/********************* cube *********************/
+
+				/******************* ability ********************/
+				/* 명성치 */
+				{% include ability/querySelector/ability1QuerySelector.html %}
+				{% include ability/chart/ability1Chart.html %}
+				{% include ability/comment/ability1Comment.html %}
+				/* 미라클 서큘레이터 */
+				{% include ability/querySelector/ability2QuerySelector.html %}
+				{% include ability/chart/ability2Chart.html%}
+				{% include ability/comment/ability2Comment.html %}
+				/******************* ability ********************/
+
+				/****************** loyalStyle ******************/
+				/* loyalStyle */
+				{% include masterpiece/querySelector/loyalStyleQuerySelector.html %}
+				{% include masterpiece/chart/loyalStyleChart.html%}
+				{% include masterpiece/comment/loyalStyleComment.html%}
+
+				/***** masterpiece red *****/
+				/* red hat */
+				{% include masterpiece/querySelector/masterpieceRedHatQuerySelector.html %}
+				{% include masterpiece/chart/masterpieceRedHatChart.html %}
+				{% include masterpiece/comment/masterpieceRedHatComment.html%}
+
+				/* red clothes */
+				{% include masterpiece/querySelector/masterpieceRedClothesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceRedClothesChart.html %}
+				{% include masterpiece/comment/masterpieceRedClothesComment.html%}
+
+				/* red cloak gloves */
+				{% include masterpiece/querySelector/masterpieceRedCloakGlovesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceRedCloakGlovesChart.html %}
+				{% include masterpiece/comment/masterpieceRedCloakGlovesComment.html%}
+
+				/* red shoes */
+				{% include masterpiece/querySelector/masterpieceRedShoesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceRedShoesChart.html %}
+				{% include masterpiece/comment/masterpieceRedShoesComment.html%}
+
+				/* red weapon */
+				{% include masterpiece/querySelector/masterpieceRedWeaponQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceRedWeaponChart.html %}
+				{% include masterpiece/comment/masterpieceRedWeaponComment.html%}
+
+				/***** masterpiece black *****/
+				/* black hat */
+				{% include masterpiece/querySelector/masterpieceBlackHatQuerySelector.html %}
+				{% include masterpiece/chart/masterpieceBlackHatChart.html %}
+				{% include masterpiece/comment/masterpieceBlackHatComment.html%}
+
+				/* black clothes */
+				{% include masterpiece/querySelector/masterpieceBlackClothesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceBlackClothesChart.html %}
+				{% include masterpiece/comment/masterpieceBlackClothesComment.html%}
+
+				/* black cloak gloves */
+				{% include masterpiece/querySelector/masterpieceBlackCloakGlovesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceBlackCloakGlovesChart.html %}
+				{% include masterpiece/comment/masterpieceBlackCloakGlovesComment.html%}
+
+				/* black shoes */
+				{% include masterpiece/querySelector/masterpieceBlackShoesQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceBlackShoesChart.html %}
+				{% include masterpiece/comment/masterpieceBlackShoesComment.html%}
+
+				/* black weapon */
+				{% include masterpiece/querySelector/masterpieceBlackWeaponQuerySelector.html%}
+				{% include masterpiece/chart/masterpieceBlackWeaponChart.html %}
+				{% include masterpiece/comment/masterpieceBlackWeaponComment.html%}
+
+				/****************** loyalStyle ******************/
+
+				/******************* beauty *********************/
+				/* man hair */
+				{% include beauty/querySelector/beautyManHair.html %}
+				{% include beauty/chart/beautyManHairChart.html %}
+				{% include beauty/comment/beautyManHairComment.html %}
+
+				/* woman hair */
+				{% include beauty/querySelector/beautyWomanHair.html %}
+				{% include beauty/chart/beautyWomanHairChart.html %}
+				{% include beauty/comment/beautyWomanHairComment.html %}
+
+				/* man face */
+				{% include beauty/querySelector/beautyManFace.html %}
+				{% include beauty/chart/beautyManFaceChart.html %}
+				{% include beauty/comment/beautyManFaceComment.html %}
+
+				/* womane face */
+				{% include beauty/querySelector/beautyWomanFace.html %}
+				{% include beauty/chart/beautyWomanFaceChart.html %}
+				{% include beauty/comment/beautyWomanFaceComment.html %}
+
+				/******************* beauty *********************/
+
+				/******************* spell **********************/
+				/* 주문의 흔적 주문서 */
+				{% include spell/querySelector/spell1.html %}
+				{% include spell/chart/spell1Chart.html %}
+				{% include spell/comment/spell1Comment.html%}
+
+				/* 손재주 /길드 스킬에 영향을 받는 주문서 */
+				{% include spell/querySelector/spell2.html %}
+				{% include spell/chart/spell2Chart.html %}
+				{% include spell/comment/spell2Comment.html %}
+
+				/* 손재주 /길드 스킬에 영향을 받지 않는 주문서 */
+				{% include spell/querySelector/spell3.html %}
+				{% include spell/chart/spell3Chart.html %}
+				{% include spell/comment/spell3Comment.html %}
+
+				/* 잠재능력과 관련된 주문서 (손재주 /길드 스킬에 영향을 받지 않음) */
+				{% include spell/querySelector/spell4.html %}
+				{% include spell/chart/spell4Chart.html %}
+				{% include spell/comment/spell4Comment.html %}
+
+				/******************* spell **********************/
+
+				/****************** starforce *******************/
+				/* 파괴방지 X, 스타캐치 X */
+				{% include starforce/querySelector/starforce1.html %}
+
+				/* 파괴방지X, 스타캐치 O */
+				{% include starforce/querySelector/starforce2.html %}
+
+				/****************** starforce *******************/
+
+				/****************** MenuToggle ******************/
+				let toggle = document.querySelector('.toggle');
+				let navigation = document.querySelector('.navigation');
+				let main = document.querySelector('.main');
+
+				toggle.onclick = function(){
+					navigation.classList.toggle('active');
+					main.classList.toggle('active');
+				}
+
+				//add hovered class in selected list item
+				var checkCube = true;
+				var checkAbility = true;
+				var checkMasterpiece = true;
+				var checkBeauty = true;
+				var checkSpell = true;
+				var checkStarforce = true;
+
+				let list = document.querySelectorAll('.navigation li');
+				function activeLink(){
+					list.forEach((item) =>
+					item.classList.remove('clicked'));
+					this.classList.add('clicked');
+					
+					let clickValue = document.querySelector('.clicked').querySelector('.title').innerText;
+					let contain1 = document.querySelector('.readmeContainer');
+					let contain2 = document.querySelector('.cubeContainer');
+					let contain3 = document.querySelector('.abilityContainer');
+					let contain4 = document.querySelector('.masterpieceContainer');
+					let contain5 = document.querySelector('.beautyContainer');
+					let contain6 = document.querySelector('.spellContainer');
+					let contain7 = document.querySelector('.starforceContainer');
+
+					function displayNoneFunction(){
+						contain1.style.display = 'none';
+						contain2.style.display = 'none';
+						contain3.style.display = 'none';
+						contain4.style.display = 'none';
+						contain5.style.display = 'none';
+						contain6.style.display = 'none';	
+						contain7.style.display = 'none';
+					}
+
+					if(clickValue == '설명서'){
+						displayNoneFunction();
+						contain1.style.display = 'block';
+					}
+					else if(clickValue == '큐브'){
+						displayNoneFunction();
+						if(checkCube){
+							redcubeChartFunction();
+							blackcubeChartFunction();
+							additionalcubeChartFunction();
+							questionablecubeChartFunction();
+							expertcubeChartFunction();
+							mastercubeChartFunction();
+							redcubeCommentFunction();
+							blackcubeCommentFunction();
+							additionalcubeCommentFunction();
+							questionablecubeCommentFunction();
+							expertcubeCommentFunction();
+							mastercubeCommentFunction();
+							checkCube = false;
+						}
+						contain2.style.display = 'block';
+					}
+					else if(clickValue == '어빌리티'){
+						displayNoneFunction();	
+						if(checkAbility){		
+							ability1ChartFunction();
+							ability2ChartFunction();
+							ability1CommentFunction();
+							ability2CommentFunction();
+							checkAbility = false;
+						}
+						contain3.style.display = 'block';
+					}
+					else if(clickValue == '로얄스타일'){
+						displayNoneFunction();
+						if(checkMasterpiece){
+							loyalStyleChartFunction();
+							masterpieceRedHatChartFunction();
+							masterpieceRedClothesChartFunction();
+							masterpieceRedCloakGlovesChartFunction();
+							masterpieceRedShoesChartFunction();
+							masterpieceRedWeaponChartFunction();
+							masterpieceBlackHatChartFunction();
+							masterpieceBlackClothesChartFunction();
+							masterpieceBlackCloakGlovesChartFunction();
+							masterpieceBlackShoesChartFunction();
+							masterpieceBlackWeaponChartFunction();
+							loyalStyleCommentFunction();
+							masterpieceRedHatCommentFunction();
+							masterpieceRedClothesCommentFunction();
+							masterpieceRedCloakGlovesCommentFunction();
+							masterpieceRedShoesCommentFunction();
+							masterpieceRedWeaponCommentFunction();
+							masterpieceBlackHatCommentFunction();
+							masterpieceBlackClothesCommentFunction();
+							masterpieceBlackCloakGlovesCommentFunction();
+							masterpieceBlackShoesCommentFunction();
+							masterpieceBlackWeaponCommentFunction();
+							checkMasterpiece = false;
+						}
+						contain4.style.display = 'block';
+					}
+					else if(clickValue == '헤어, 성형'){
+						displayNoneFunction();
+						if(checkBeauty){
+							beautyManHairChartFunction();
+							beautyWomanHairChartFunction();
+							beautyManFaceChartFunction();
+							beautyWomanFaceChartFunction();
+							beautyManHairCommentFunction();
+							beautyWomanHairCommentFunction();
+							beautyManFaceCommentFunction();
+							beautyWomanHairCommentFunction();
+							checkBeauty = false;
+						}
+						contain5.style.display = 'block';
+					}
+					else if(clickValue == '주문서'){
+						displayNoneFunction();
+						if(checkSpell){
+							spell1ChartFunction();
+							spell2ChartFunction();
+							spell3ChartFunction();
+							spell4ChartFunction();
+							spell1CommentFunction();
+							spell2CommentFunction();
+							spell3CommentFunction();
+							spell4CommentFunction();
+							checkSpell = false;
+						}
+						contain6.style.display = 'block';
+					}
+					else if(clickValue == '스타포스'){
+						displayNoneFunction();
+						if(checkStarforce){
+							checkStarforce = false;
+						}
+						contain7.style.display = 'block';
+					}
+				}
+				list.forEach((item) =>
+				item.addEventListener('click',activeLink));
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+	});
+
+</script>
+
 </html>

@@ -1,0 +1,64 @@
+var dataQuestionableRE = [];
+var dataQuestionableREreal = [];
+
+var questionableREAV = 0;
+
+var questionableRErealAV = 0;
+
+var questionablePercentage = document.querySelectorAll('#questionablecube .details .data table tbody tr td');
+
+//percentage object->string->number
+var questionablePercentage1 = questionablePercentage[3].innerText;
+questionablePercentage1 = (Number(questionablePercentage1.slice(0,-1))/100).toFixed(7);
+var questionablePercentage2 = questionablePercentage[4].innerText;
+questionablePercentage2 = (Number(questionablePercentage2.slice(0,-1))/100).toFixed(7);
+
+
+//questionablecube chart function
+function questionablecubeChartFunction(){
+
+	
+	//data setting
+	const questionable1 = d3.randomGeometric(questionablePercentage1);
+	const questionable2 = d3.randomGeometric(questionablePercentage2);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = questionable1();
+		dataQuestionableRE[i] = tmp1;
+		
+		var tmp2 = questionable2();
+		dataQuestionableREreal[i] = tmp2;
+
+		questionableREAV += tmp1;
+		questionableRErealAV += tmp2;
+	}
+
+	dataQuestionableRE.sort(function(a, b){return a - b;});
+	dataQuestionableREreal.sort(function(a, b){return a - b;});
+
+	questionableREAV /= arrayLength;
+	questionableRErealAV /= arrayLength;
+
+	//chart
+	var questionableCubeChart = document.querySelectorAll('.questionableCubeChart');
+	new Chart(questionableCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataQuestionableRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataQuestionableREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//questionablecubeChartFunction
+

@@ -1,0 +1,168 @@
+<div id='cubeCard'>
+	<!-- cards -->
+	<div class='cubeBox'>
+		<div class='cube'>
+			<div class='cubeName'>레드 큐브</div>
+			<div class='iconBx'>
+				<div class='red'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='cube'>
+			<div class='cubeName'>블랙 큐브</div>
+			<div class='iconBx'>
+				<div class='black'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='cube'>
+			<div class='cubeName'>에디셔널 큐브</div>
+			<div class='iconBx'>
+				<div class='additional'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='cube'>
+			<div class='cubeName'>수상한 큐브</div>
+			<div class='iconBx'>
+				<div class='questionable'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='cube'>
+			<div class='cubeName'>장인의 큐브</div>
+			<div class='iconBx'>
+				<div class='expert'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='cube'>
+			<div class='cubeName'>명장의 큐브</div>
+			<div class='iconBx'>
+				<div class='master'>
+					<ion-icon name='cube-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='cardAdsense'>
+{% include cardAdsense.html %}
+</div>
+
+<div class='redcubeContainer' style='display:block;'>
+	{% include cube/cubeRed.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='blackcubeContainer' style='display:none;'>
+	{% include cube/cubeBlack.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='additionalcubeContainer' style='display:none;'>
+	{% include cube/cubeAdditional.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='questionablecubeContainer' style='display:none;'>
+	{% include cube/cubeQuestionable.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='expertcubeContainer' style='display:none;'>
+	{% include cube/cubeExpert.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='mastercubeContainer' style='display:none;'>
+	{% include cube/cubeMaster.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+
+<script>
+	//cube toggle
+	var cubelist = document.querySelectorAll('.cubeBox .cube');
+
+	var redcubeContainer = document.querySelector('.redcubeContainer');
+	var blackcubeContainer = document.querySelector('.blackcubeContainer');
+	var additionalcubeContainer = document.querySelector('.additionalcubeContainer');
+	var questionablecubeContainer = document.querySelector('.questionablecubeContainer');
+	var expertcubeContainer = document.querySelector('.expertcubeContainer');
+	var mastercubeContainer = document.querySelector('.mastercubeContainer');
+
+	function cubeDisplayNoneFunction(){
+		redcubeContainer.style.display = 'none'; 
+		blackcubeContainer.style.display = 'none';
+		additionalcubeContainer.style.display = 'none';
+		questionablecubeContainer.style.display = 'none';
+		expertcubeContainer.style.display = 'none';
+		mastercubeContainer.style.display = 'none';
+	}
+
+	cubelist[0].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		redcubeContainer.style.display = 'block';
+	});
+	cubelist[1].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		blackcubeContainer.style.display = 'block';
+	});
+	cubelist[2].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		additionalcubeContainer.style.display = 'block';
+	});
+	cubelist[3].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		questionablecubeContainer.style.display = 'block';
+	});
+	cubelist[4].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		expertcubeContainer.style.display = 'block';
+	});
+	cubelist[5].addEventListener('click',function(){
+		cubeDisplayNoneFunction();
+		mastercubeContainer.style.display = 'block';
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

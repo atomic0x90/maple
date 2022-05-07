@@ -1,0 +1,88 @@
+<div id='abilityCard'>
+	<!-- cards -->
+	<div class='abilityBox'>
+		<div class='ability'>
+			<div class='abilityName'>명성치</div>
+			<div class='iconBx'>
+				<div class='ability1'>
+					<ion-icon name='list-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class='ability'>
+			<div class='abilityName'>미라클 서큘레이터</div>
+			<div class='iconBx'>
+				<div class='ability2'>
+					<ion-icon name='list-outline'></ion-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='cardAdsense'>
+{% include cardAdsense.html %}
+</div>
+
+<div class='ability1Container' style='display:block;'>
+	{% include ability/ability1.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+<div class='ability2Container' style='display:none;'>
+	{% include ability/ability2.html %}
+	<div class='cardAdsenseFooter'>
+	{% include cardAdsenseFooter.html %}
+	</div>
+</div>
+
+<script>
+	//ability toggle
+	var abilitylist = document.querySelectorAll('.abilityBox .ability');
+
+
+	var ability1Container = document.querySelector('.ability1Container');
+	var ability2Container = document.querySelector('.ability2Container');
+
+	function abilityDisplayNoneFunction(){
+		ability1Container.style.display = 'none'; 
+		ability2Container.style.display = 'none';
+	}
+
+	abilitylist[0].addEventListener('click',function(){
+		abilityDisplayNoneFunction();
+		ability1Container.style.display = 'block';
+	});
+	abilitylist[1].addEventListener('click',function(){
+		abilityDisplayNoneFunction();
+		ability2Container.style.display = 'block';
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

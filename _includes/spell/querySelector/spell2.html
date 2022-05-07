@@ -1,0 +1,22 @@
+var spell2Title = document.querySelectorAll('#spell2 .details .data .header h2');
+var spell2TitleLength = spell2Title.length;
+for(var i = 0;i < spell2TitleLength;i++){
+	spell2Title[i].innerText = sq_bul[10].textContent.substring(1,sq_bul[10].textContent.length-1)+'\n'+
+					subTitle1[4].textContent+'\n'+
+					subTitle2[4].textContent;
+}
+
+var spell2Thead1 = document.querySelectorAll('#spell2 .details .data table thead');
+var spell2Thead2 = type3[2].querySelector('thead');
+var spell2TheadLength = spell2Thead1.length;
+for(var i = 0;i < spell2TheadLength;i++){
+	spell2Thead1[i].innerHTML = spell2Thead2.innerHTML;
+}
+
+var spell2Tbody1 = document.querySelectorAll('#spell2 .details .data table tbody tr');
+var spell2Tbody2 = type3[2].querySelectorAll('tbody tr');
+var spell2TbodyLength = spell2Tbody1.length;
+for(var i = 0;i < spell2TbodyLength;i++){
+	spell2Tbody1[i].innerHTML = spell2Tbody2[i].innerHTML;
+}
+

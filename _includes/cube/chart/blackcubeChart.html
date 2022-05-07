@@ -1,0 +1,151 @@
+var dataBlackUL = [];
+var dataBlackEU = [];
+var dataBlackRE = [];
+var dataBlackREreal = [];
+var dataBlackEUreal = [];
+var dataBlackULreal = [];
+
+var blackREAV = 0;
+var blackEUAV = 0;
+var blackULAV = 0;
+
+var blackRErealAV = 0;
+var blackEUrealAV = 0;
+var blackULrealAV = 0;
+
+var blackPercentage = document.querySelectorAll('#blackcube .details .data table tbody tr td');
+
+//percentage object->string->number
+var blackPercentage1 = blackPercentage[1].innerText;
+blackPercentage1 = (Number(blackPercentage1.slice(0,-1))/100).toFixed(7);
+var blackPercentage2 = blackPercentage[2].innerText;
+blackPercentage2 = (Number(blackPercentage2.slice(0,-1))/100).toFixed(7);
+
+var blackPercentage3 = blackPercentage[4].innerText;
+blackPercentage3 = (Number(blackPercentage3.slice(0,-1))/100).toFixed(7);
+var blackPercentage4 = blackPercentage[5].innerText;
+blackPercentage4 = (Number(blackPercentage4.slice(0,-1))/100).toFixed(7);
+
+var blackPercentage5 = blackPercentage[7].innerText;
+blackPercentage5 = (Number(blackPercentage5.slice(0,-1))/100).toFixed(7);
+var blackPercentage6 = blackPercentage[8].innerText;
+blackPercentage6 = (Number(blackPercentage6.slice(0,-1))/100).toFixed(7);
+
+
+
+//blackcube chart function
+function blackcubeChartFunction(){
+
+	
+	//data setting
+	const black1 = d3.randomGeometric(blackPercentage1);
+	const black2 = d3.randomGeometric(blackPercentage2);
+	const black3 = d3.randomGeometric(blackPercentage3);
+	const black4 = d3.randomGeometric(blackPercentage4);
+	const black5 = d3.randomGeometric(blackPercentage5);
+	const black6 = d3.randomGeometric(blackPercentage6);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = black1();
+		dataBlackRE[i] = tmp1;
+		
+		var tmp2 = black2();
+		dataBlackREreal[i] = tmp2;
+
+		var tmp3 = black3();
+		dataBlackEU[i] = tmp3;
+	
+		var tmp4 = black4();
+		dataBlackEUreal[i] = tmp4;
+
+		var tmp5 = black5();
+		dataBlackUL[i] = tmp5;
+	
+		var tmp6 = black6();
+		dataBlackULreal[i] = tmp6;
+
+		blackREAV += tmp1;
+		blackEUAV += tmp3;
+		blackULAV += tmp5;
+		blackRErealAV += tmp2;
+		blackEUrealAV += tmp4;
+		blackULrealAV += tmp6;
+	}
+
+	dataBlackRE.sort(function(a, b){return a - b;});
+	dataBlackREreal.sort(function(a, b){return a - b;});
+	dataBlackEU.sort(function(a, b){return a - b;});
+	dataBlackEUreal.sort(function(a, b){return a - b;});
+	dataBlackUL.sort(function(a, b){return a - b;});
+	dataBlackULreal.sort(function(a, b){return a - b;});
+
+	blackREAV /= arrayLength;
+	blackEUAV /= arrayLength;
+	blackULAV /= arrayLength;
+	blackRErealAV /= arrayLength;
+	blackEUrealAV /= arrayLength;
+	blackULrealAV /= arrayLength;
+
+	//chart
+	var blackCubeChart = document.querySelectorAll('.blackCubeChart');
+	new Chart(blackCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataBlackRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataBlackREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+	new Chart(blackCubeChart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataBlackEU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataBlackEUreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+	
+	new Chart(blackCubeChart[2], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataBlackUL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataBlackULreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//blackcubeChartFunction
+

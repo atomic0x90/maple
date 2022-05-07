@@ -1,0 +1,21 @@
+var masterpieceBlackCloakGlovesTitle = document.querySelectorAll('#masterpieceBlackCloakGloves .details .data .header h2');
+var masterpieceBlackCloakGlovesTitleLength = masterpieceBlackCloakGlovesTitle.length;
+for(var i = 0;i < masterpieceBlackCloakGlovesTitleLength;i++){
+	masterpieceBlackCloakGlovesTitle[i].innerText = sq_bul[6].textContent.substring(1,sq_bul[6].textContent.length-1)+'\n'+
+					subTitle1[2].textContent+'\n'+
+					subTitle2[2].textContent;
+}
+
+var masterpieceBlackCloakGlovesThead1 = document.querySelectorAll('#masterpieceBlackCloakGloves .details .data table thead');
+var masterpieceBlackCloakGlovesThead2 = type2[8].querySelector('thead');
+var masterpieceBlackCloakGlovesTheadLength = masterpieceBlackCloakGlovesThead1.length;
+for(var i = 0;i < masterpieceBlackCloakGlovesTheadLength;i++){
+	masterpieceBlackCloakGlovesThead1[i].innerHTML = masterpieceBlackCloakGlovesThead2.innerHTML;
+}
+
+var masterpieceBlackCloakGlovesTbody1 = document.querySelectorAll('#masterpieceBlackCloakGloves .details .data table tbody tr');
+var masterpieceBlackCloakGlovesTbody2 = type2[8].querySelectorAll('tbody tr');
+var masterpieceBlackCloakGlovesTbodyLength = masterpieceBlackCloakGlovesTbody1.length;
+for(var i = 0;i < masterpieceBlackCloakGlovesTbodyLength;i++){
+	masterpieceBlackCloakGlovesTbody1[i].innerHTML = masterpieceBlackCloakGlovesTbody2[i].innerHTML;
+}

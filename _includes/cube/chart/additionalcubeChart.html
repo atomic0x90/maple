@@ -1,0 +1,151 @@
+var dataAdditionalUL = [];
+var dataAdditionalEU = [];
+var dataAdditionalRE = [];
+var dataAdditionalREreal = [];
+var dataAdditionalEUreal = [];
+var dataAdditionalULreal = [];
+
+var additionalREAV = 0;
+var additionalEUAV = 0;
+var additionalULAV = 0;
+
+var additionalRErealAV = 0;
+var additionalEUrealAV = 0;
+var additionalULrealAV = 0;
+
+var additionalPercentage = document.querySelectorAll('#additionalcube .details .data table tbody tr td');
+
+//percentage object->string->number
+var additionalPercentage1 = additionalPercentage[1].innerText;
+additionalPercentage1 = (Number(additionalPercentage1.slice(0,-1))/100).toFixed(7);
+var additionalPercentage2 = additionalPercentage[2].innerText;
+additionalPercentage2 = (Number(additionalPercentage2.slice(0,-1))/100).toFixed(7);
+
+var additionalPercentage3 = additionalPercentage[4].innerText;
+additionalPercentage3 = (Number(additionalPercentage3.slice(0,-1))/100).toFixed(7);
+var additionalPercentage4 = additionalPercentage[5].innerText;
+additionalPercentage4 = (Number(additionalPercentage4.slice(0,-1))/100).toFixed(7);
+
+var additionalPercentage5 = additionalPercentage[7].innerText;
+additionalPercentage5 = (Number(additionalPercentage5.slice(0,-1))/100).toFixed(7);
+var additionalPercentage6 = additionalPercentage[8].innerText;
+additionalPercentage6 = (Number(additionalPercentage6.slice(0,-1))/100).toFixed(7);
+
+
+
+//additionalcube chart function
+function additionalcubeChartFunction(){
+
+	
+	//data setting
+	const additional1 = d3.randomGeometric(additionalPercentage1);
+	const additional2 = d3.randomGeometric(additionalPercentage2);
+	const additional3 = d3.randomGeometric(additionalPercentage3);
+	const additional4 = d3.randomGeometric(additionalPercentage4);
+	const additional5 = d3.randomGeometric(additionalPercentage5);
+	const additional6 = d3.randomGeometric(additionalPercentage6);
+	for(var i = 0;i < arrayLength;i++){
+		var tmp1 = additional1();
+		dataAdditionalRE[i] = tmp1;
+		
+		var tmp2 = additional2();
+		dataAdditionalREreal[i] = tmp2;
+
+		var tmp3 = additional3();
+		dataAdditionalEU[i] = tmp3;
+	
+		var tmp4 = additional4();
+		dataAdditionalEUreal[i] = tmp4;
+
+		var tmp5 = additional5();
+		dataAdditionalUL[i] = tmp5;
+	
+		var tmp6 = additional6();
+		dataAdditionalULreal[i] = tmp6;
+
+		additionalREAV += tmp1;
+		additionalEUAV += tmp3;
+		additionalULAV += tmp5;
+		additionalRErealAV += tmp2;
+		additionalEUrealAV += tmp4;
+		additionalULrealAV += tmp6;
+	}
+
+	dataAdditionalRE.sort(function(a, b){return a - b;});
+	dataAdditionalREreal.sort(function(a, b){return a - b;});
+	dataAdditionalEU.sort(function(a, b){return a - b;});
+	dataAdditionalEUreal.sort(function(a, b){return a - b;});
+	dataAdditionalUL.sort(function(a, b){return a - b;});
+	dataAdditionalULreal.sort(function(a, b){return a - b;});
+
+	additionalREAV /= arrayLength;
+	additionalEUAV /= arrayLength;
+	additionalULAV /= arrayLength;
+	additionalRErealAV /= arrayLength;
+	additionalEUrealAV /= arrayLength;
+	additionalULrealAV /= arrayLength;
+
+	//chart
+	var additionalCubeChart = document.querySelectorAll('.additionalCubeChart');
+	new Chart(additionalCubeChart[0], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAdditionalRE
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAdditionalREreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+	new Chart(additionalCubeChart[1], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAdditionalEU
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAdditionalEUreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+	
+	new Chart(additionalCubeChart[2], {
+	    type: 'line',
+	    data: {
+	      labels: labelArray,
+	      datasets: [
+		{
+		  label: "설정 확률",
+		  backgroundColor: ["#ff5733"],
+		  data: dataAdditionalUL
+		},
+		{
+		  label: "실제 결과 확률",
+		  backgroundColor: ["#33dbff"],
+		  data: dataAdditionalULreal
+		}
+	      ]
+	    },
+	    options: {% include cube/chart/chartOption.html %}
+	});
+
+}//additionalcubeChartFunction
+

@@ -21,7 +21,12 @@
 	
 	<!-- web -->
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" integrity="sha512-vRqhAr2wsn+/cSsyz80psBbCcqzz2GTuhGk3bq3dAyytz4J/8XwFqMjiAGFBj+WM95lHBJ9cDf87T3P8yMrY7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
 	<script src="http://requirejs.org/docs/release/2.3.6/comments/require.js"></script>
+
+	<!-- mixed content error -->
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 	<!-- scroll top -->
 	<script>function scrollToTop(){window.scrollTo({top: 0, behavior: 'smooth'});}</script>
@@ -182,7 +187,11 @@
 
 	/***************************** main function *****************************/
 	require(['https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'],function(axios){
-		axios.get(url)
+		axios.get(url,{
+				headers: {
+					"Access-Control-Allow-Origin": "mapledata.info"
+				}
+			})
 			.then(function(response){
 				getMaple = new DOMParser().parseFromString(response.data,'text/html');
 

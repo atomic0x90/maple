@@ -23,7 +23,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" integrity="sha512-vRqhAr2wsn+/cSsyz80psBbCcqzz2GTuhGk3bq3dAyytz4J/8XwFqMjiAGFBj+WM95lHBJ9cDf87T3P8yMrY7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
-	<script src="http://requirejs.org/docs/release/2.3.6/comments/require.js"></script>
+	<script src="https://requirejs.org/docs/release/2.3.6/comments/require.js"></script>
 
 	<!-- mixed content error -->
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -43,6 +43,8 @@
 
 		gtag('config', 'G-WKKCCMZTVK');
 	</script>
+
+
 </head>
 <body>
   <div id="main">
@@ -170,11 +172,13 @@
 	<ion-icon name="caret-up-outline"></ion-icon>
 	</button>
 
+	<div id='mapledata' style='display:none;'>{% include 20220414 %}</div> 
 </body>
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
 	//web crawler
 
@@ -185,26 +189,23 @@
 	var labelArray = new Array(arrayLength);
 	for(var i = 0;i < arrayLength;i++) labelArray[i] = i+1;
 
+console.log('origin: '+window.location.origin);
 	/***************************** main function *****************************/
-	require(['https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'],function(axios){
-		axios.get(url,{
-				headers: {
-					"Access-Control-Allow-Origin": "mapledata.info"
-				}
-			})
-			.then(function(response){
-				getMaple = new DOMParser().parseFromString(response.data,'text/html');
+//	require(['https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'],function(axios){
+//		axios.get(url)
+//			.then(function(response){
+				//document = new DOMParser().parseFromString(test,'text/html');
 
-				var contents = getMaple.querySelectorAll('.contents_wrap2.sm');
-				var subTitle1 = getMaple.querySelectorAll('.contents_wrap2.sm h2');
-				var subTitle2 = getMaple.querySelectorAll('.contents_wrap2.sm p');
+				var contents = document.querySelectorAll('.contents_wrap2.sm');
+				var subTitle1 = document.querySelectorAll('.contents_wrap2.sm h2');
+				var subTitle2 = document.querySelectorAll('.contents_wrap2.sm p');
 
-				var basic = getMaple.querySelectorAll('.basic');
-				var type4 = getMaple.querySelectorAll('.type4');
-				var sq_bul = getMaple.querySelectorAll('.sq_bul');
-				var type2 = getMaple.querySelectorAll('.type2');
-				var type3 = getMaple.querySelectorAll('.type3');
-				var type4 = getMaple.querySelectorAll('.type4');
+				var basic = document.querySelectorAll('.basic');
+				var type4 = document.querySelectorAll('.type4');
+				var sq_bul = document.querySelectorAll('.sq_bul');
+				var type2 = document.querySelectorAll('.type2');
+				var type3 = document.querySelectorAll('.type3');
+				var type4 = document.querySelectorAll('.type4');
 
 				for(var i = 0;i < subTitle1.length;i++){
 					subTitle1[i].innerText = subTitle1[i].innerText.substr(2,);
@@ -515,11 +516,11 @@
 				}
 				list.forEach((item) =>
 				item.addEventListener('click',activeLink));
-			})
-			.catch(function(error){
-				console.log(error);
-			});
-	});
+//			})
+//			.catch(function(error){
+//				console.log(error);
+//			});
+//	});
 
 </script>
 
